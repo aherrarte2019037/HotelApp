@@ -1,17 +1,21 @@
 .profile-div h1  {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
     font-family: 'Poppins', sans-serif;
-    color: rgb(147, 172, 241);
+    color: rgb(240, 240, 240);
 }
 
 .profile-div h3  {
     font-family: 'Poppins', sans-serif;
     font-size: 11px;
     font-weight: 300;
-    margin-top: 3px;
-    @apply tracking-widest;
-    color: rgb(232, 237, 248);
+    margin-top: 4px;
+    letter-spacing: 1px;
+    color: rgb(238, 238, 238);
+    background-color: rgb(23, 31, 49);
+    margin-left: 23px;
+    margin-right: 23px;
+    @apply rounded-full py-1;
 }
 
 .menu-div button {
@@ -19,16 +23,17 @@
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
     font-weight: 400;
-    @apply text-left px-12 py-2.5 tracking-wide;
+    @apply text-left px-5 rounded-lg pt-1.5 pb-3 tracking-wide;
 }
 
 .menu-div button:hover {
     background-color: rgba(255, 255, 255, 0.08);
 }
 
-.menu-div i {
-    font-size: 17px;
-    @apply mr-1.5;
+.bg-icon {
+    font-size: 18px;
+    margin-bottom: -10px;
+    @apply mr-1.5 bg-gray-900 p-1.5 rounded-md;
 }
 
 button:focus, button:active {
@@ -37,8 +42,28 @@ button:focus, button:active {
 
 .btn-logout {
     background-color: #f14040;
-    font-weight: 400;
+    font-weight: 300;
     font-family: 'Poppins', sans-serif;
-    font-size: 11.6px;
-    @apply mt-4 py-2 px-4 rounded-full tracking-wider shadow-2xl;
+    font-size: 11px;
+    @apply mt-3.5 py-1 px-2.5 rounded-full tracking-wider shadow-2xl ring-2 ring-red-500 ring-opacity-60;
+}
+
+.btn-hotel:hover ion-icon {
+    color: #575fcf;
+}
+
+.btn-room:hover ion-icon {
+    color: #0be881;
+}
+
+.btn-reservation:hover ion-icon {
+    color: #fdb735;
+}
+
+.btn-bill:hover ion-icon {
+    color: #ef5777;
+}
+
+.right-icon {
+    @apply -mb-0.5 float-right mt-2.5;
 }

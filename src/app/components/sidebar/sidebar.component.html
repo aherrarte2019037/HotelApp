@@ -1,24 +1,22 @@
 <ng-sidebar-container>
  
     <ng-sidebar opened="true" autoCollapseOnInit="true" position="left">
-      <div class="text-center profile-div text-white w-full pt-16">
+      <div class="text-center bg-gray-900 profile-div text-white mx-auto pt-w pb-6">
 
-        <div class="bg-white rounded-full w-20 h-20 mx-auto">
-          <img class="mx-auto pt-3" src="../../../assets/images/male.svg" width="55px">
+        <div class="mx-auto">
+          <img class="mx-auto pt-3" src="../../../assets/images/male2.png" width="100px" height="100px">
         </div>
-        <h1 class="mt-2">Angel Herrarte <i class="icon-angle-down"></i></h1>
+        <h1 class="mt-1">Angel Herrarte <i class="icon-angle-down"></i></h1>
         <h3>angelherrarte3@gmail.com</h3>
         <button class="btn-logout">Cerrar Sesión</button>
         
       </div>
 
-      <hr class="w-10/12 text-center mx-auto mt-5 text-gray-100 border-gray-500">
-
-      <div class="menu-div flex flex-col justify-start mt-10 space-y-3">
-        <button><i class="icon-commerical-building"></i>Hoteles</button>
-        <button><i class="icon-home"></i> Habitaciones</button>
-        <button><i class="icon-calendar"></i> Reservaciones</button>
-        <button><i class="icon-dollar"></i> Facturas</button>
+      <div class="menu-div flex flex-col justify-start mt-7 space-y-3 px-6">
+        <button class="btn-hotel"><ion-icon class="bg-icon" name="business"></ion-icon>Hoteles<ion-icon class="right-icon" name="chevron-forward-outline"></ion-icon></button>
+        <button class="btn-room"><ion-icon class="bg-icon" name="bed"></ion-icon>Habitaciones<ion-icon class="right-icon" name="chevron-forward-outline"></ion-icon></button>
+        <button class="btn-reservation"><ion-icon class="bg-icon" name="calendar-number"></ion-icon>Reservaciones<ion-icon class="right-icon" name="chevron-forward-outline"></ion-icon></button>
+        <button class="btn-bill"><ion-icon class="bg-icon" name="cash"></ion-icon>Facturas<ion-icon class="right-icon" name="chevron-forward-outline"></ion-icon></button>
       </div>
     </ng-sidebar>
 
