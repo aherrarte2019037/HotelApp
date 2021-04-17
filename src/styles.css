@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    height: calc(100vh - 64px);
+}
+
+.ng-sidebar {
+    width: 260px;
+    @apply shadow-2xl bg-gray-800;
+}
+
+.ng-sidebar__content {
+    margin-left: 260px;
+}

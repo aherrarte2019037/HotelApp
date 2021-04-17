@@ -1,0 +1,70 @@
+.menu-lg {
+    margin-top: 3px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.9rem;
+}
+
+.menu-lg a:hover {
+    background-color: rgb(0, 0, 0, 0.22);
+}
+
+.div-icon {
+    top: 3px;
+}
+
+.search-button {
+    margin-top: 1px;
+    width: 70px;
+    height: 25px;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    @apply  ring-2 ring-green-300 ring-opacity-50;
+}
+
+.search-button:active, .search-button:focus {
+    outline: none;
+}
+
+.search-button-mobile button {
+    width: 70px;
+    height: 25px;
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-family: 'Open Sans', sans-serif;
+    @apply  ring-2 ring-green-300 ring-opacity-50;
+}
+
+.search-button-mobile {
+    top: 5px;
+}
+
+#mobile-menu {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+}
+
+#mobile-menu div a {
+    @apply transition duration-500 ease-in-out;
+}
+
+.search-bar input {
+    padding-left: 88px;
+    padding-right: 43px;
+    transition: padding-right 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.searchOpen {
+    @apply w-72 lg:w-96;
+}
+
+.searchClose {
+    @apply w-36 lg:w-96;
+}
+
+.active {
+    background-color: rgb(0, 0, 0, 0.22);
+    @apply text-gray-50 ring-green-500 ring-opacity-50 ring-inset ring-2
+}
