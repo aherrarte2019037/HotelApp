@@ -1,6 +1,7 @@
 .profile-div h1  {
     font-size: 13px;
-    font-weight: 300;
+    font-weight: 400;
+    letter-spacing: 0.5px;
     font-family: 'Poppins', sans-serif;
     color: rgb(240, 240, 240);
 }
@@ -23,7 +24,7 @@
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
     font-weight: 400;
-    @apply text-left px-5 rounded-lg pt-1.5 pb-3 tracking-wide;
+    @apply text-left pl-5 pr-4 rounded-lg pt-1.5 pb-3 tracking-wide;
 }
 
 .menu-div button:hover {
@@ -38,6 +39,10 @@
 
 button:focus, button:active {
     outline:none;
+}
+
+ion-icon {
+    transition: color 0.15s ease-in-out;
 }
 
 .btn-logout {
