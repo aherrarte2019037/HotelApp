@@ -1,0 +1,71 @@
+<div class="background-div">
+
+    <div class="main-container animate__animated animate__fadeInRight">
+
+        <div class="form-container absolute bg-white transform sm:rotate-8 rotate-6 bg-opacity-25">
+        </div>
+    
+        <div class="form-container bg-white rounded-3xl shadow-2xl z-10">
+            <h1 class="text-gray-700 text-3xl font-semibold">Hotel Control</h1>
+            <h1 class="text-gray-700 text-xl mt-0">Crear Cuenta</h1>
+    
+            <form [formGroup]="registerForm" (ngSubmit)="register()" class="form">
+    
+                <div class="form-div tooltip">
+                    <input [class.invalid]="getValidationError('username')" class="form-control" type="text" placeholder="Usuario" formControlName="username">
+                    <span class="icon-span left-3 top-2"><ion-icon name="person"></ion-icon></span>
+                    <ion-icon *ngIf="getValidationError('username')" name="close-outline" class="absolute top-3 right-4 text-red-400"></ion-icon>
+                    <span *ngIf="getValidationError('username')" class="tooltiptext tooltip-full">{{ getValidationError('username') }}</span>
+                </div>
+    
+                <div class="form-div w-1/2 inline-flex justify-between tooltip">
+                    <input class="form-control fix-control form-middle mt-7 mr-1" type="text" placeholder="Nombre" formControlName="firstname">
+                    <span class="icon-span left-3 top-9"><ion-icon name="card"></ion-icon></span>
+                    <ion-icon *ngIf="getValidationError('firstname')" name="close-outline" class="absolute top-10 right-5 text-red-400"></ion-icon>
+                    <span *ngIf="getValidationError('firstname')" class="tooltiptext">{{ getValidationError('firstname') }}</span>
+                </div>
+    
+                <div class="form-div w-1/2 inline-flex justify-between tooltip">
+                    <input class="form-control lastname-control form-middle mt-7 ml-1" type="text" placeholder="Apellido" formControlName="lastname">
+                    <span class="icon-span left-3.5 top-9"><ion-icon name="card"></ion-icon></span>
+                    <ion-icon *ngIf="getValidationError('lastname')" name="close-outline" class="absolute top-10 right-5 text-red-400"></ion-icon>
+                    <span *ngIf="getValidationError('lastname')" class="tooltiptext">{{ getValidationError('lastname') }}</span>
+                </div>
+    
+                <div class="form-div mt-7 tooltip">
+                    <input class="form-control" type="text" placeholder="Correo Electrónico" formControlName="email">
+                    <span class="icon-span left-3 top-2"><ion-icon name="mail"></ion-icon></span>
+                    <ion-icon *ngIf="getValidationError('email')" name="close-outline" class="absolute top-3 right-4 text-red-400"></ion-icon>
+                    <span *ngIf="getValidationError('email')" class="tooltiptext tooltip-full">{{ getValidationError('email') }}</span>
+                </div>
+    
+                <div class="form-div w-1/2 inline-flex justify-between tooltip">
+                    <input class="form-control form-middle mt-7 mr-1" type="password" placeholder="Contraseña" formControlName="password">
+                    <span class="icon-span left-3 top-9"><ion-icon name="lock-closed"></ion-icon></span>
+                    <ion-icon *ngIf="getValidationError('password')" name="close-outline" class="absolute top-10 right-4 text-red-400"></ion-icon>
+                    <span class="text-red-400 p-0 m-0 text-xs absolute left-1 top-16 pt-0.5">{{ getValidationError('password') }}</span>
+                    <span class="tooltiptext">1 dígito y una letra mayúscula</span>
+                </div>
+    
+                <div class="form-div w-1/2 inline-flex justify-between tooltip">
+                    <input class="form-control form-middle mt-7 ml-1" type="password" autocomplete="on" placeholder="Repetir" formControlName="password2">
+                    <span class="icon-span left-4 top-9"><ion-icon name="lock-closed"></ion-icon></span>
+                    <ion-icon *ngIf="getValidationError('password2')" name="close-outline" class="absolute top-10 right-4 text-red-400"></ion-icon>
+                    <span *ngIf="getValidationError('password2')" class="tooltiptext">{{ getValidationError('password2') }}</span>
+                </div>
+    
+                <button type="submit" class="btn-register">Registrarse</button>
+    
+                <div class="flex justify-between items-center mt-6">
+                    <hr class="ml-1 w-full">
+                    <span class="text-gray-500 text-sm w-full">¿Ya tienes cuenta?</span>
+                    <hr class="mr-1 w-full">
+                </div>
+    
+                <button [routerLink]="['/login']" class="btn-login">Iniciar Sesión</button>
+    
+            </form>
+        </div>
+    </div>
+
+</div>

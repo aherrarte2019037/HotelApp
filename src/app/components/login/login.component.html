@@ -1,0 +1,49 @@
+<div class="background-div">
+
+<div class="main-container animate__fadeInLeft animate__animated">
+    
+    <div class="form-container absolute bg-white transform sm:rotate-8 rotate-6 bg-opacity-25">
+    </div>
+
+    <div class="form-container bg-white rounded-3xl shadow-2xl z-10 ">
+        <h1 class="text-gray-700 text-3xl font-semibold">Hotel Control</h1>
+        <h1 class="text-gray-700 text-xl mt-0">Iniciar Sesión</h1>
+
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
+
+            <div class="form-div mt-12 tooltip">
+                <input class="form-control" type="text" placeholder="Correo Electrónico" formControlName="email">
+                <span class="icon-span left-3 top-2"><ion-icon name="mail"></ion-icon></span>
+                <ion-icon *ngIf="getValidationError('email')" name="close-outline" class="absolute top-3 right-4 text-red-400"></ion-icon>
+                <span *ngIf="getValidationError('email')" class="tooltiptext tooltip-full">{{ getValidationError('email') }}</span>
+            </div>
+
+            <div class="form-div tooltip">
+                <input class="form-control form-middle mt-7 mr-1" type="password" placeholder="Contraseña" formControlName="password">
+                <span class="icon-span left-3 top-9"><ion-icon name="lock-closed"></ion-icon></span>
+                <ion-icon *ngIf="getValidationError('password')" name="close-outline" class="absolute top-10 right-4 text-red-400"></ion-icon>
+                <span class="text-red-400 p-0 m-0 text-xs absolute left-1 top-16 pt-0.5">{{ getValidationError('password') }}</span>
+            </div>
+
+            <span class="forgot-pass flex justify-end text-sm text-gray-500 mt-1 hover:underline cursor-pointer">¿Olvidaste tu contraseña?</span>
+            
+            <button type="submit" class="btn-login relative"><ion-icon class="absolute top-0 left-0 rounded-l-2xl" name="paper-plane"></ion-icon>Iniciar Sesión</button>
+
+            <div class="social-buttons">
+                <button class="btn-g w-full rounded-full relative"><ion-icon class="absolute top-0 left-0 rounded-l-2xl" name="logo-google"></ion-icon>Google</button>
+                <button disabled class="btn-f w-full rounded-full relative"><ion-icon class="absolute top-0 left-0 rounded-l-2xl" name="logo-facebook"></ion-icon>Facebook</button>
+            </div>
+            
+            <div class="flex justify-between items-center mt-8">
+                <hr class="ml-1 w-full">
+                <span class="text-gray-500 text-sm w-full">¿Ya tienes cuenta?</span>
+                <hr class="mr-1 w-full">
+            </div>
+
+            <button [routerLink]="['/register']" class="btn-register">Registrarse</button>
+
+        </form>
+    </div>
+</div>
+
+</div>

@@ -1,0 +1,115 @@
+.background-div{
+    background: linear-gradient(to bottom, #8888d8, #86a8e7, #a2ebe6);
+}
+
+.main-container {
+    background: linear-gradient(to bottom, #8888d8, #86a8e7, #a2ebe6);
+    @apply h-screen flex flex-row justify-center items-center;
+}
+
+input {
+    border: 1px solid;
+}
+
+.form-container {
+    @apply w-11/12 sm:w-2/3 md:w-2/4 lg:w-1/3 xl:w-3/12 2xl:w-3/12 h-4/6 p-10 text-center;
+}
+
+.form { 
+    @apply mt-9;
+}
+
+.form .icon-span {
+    font-size: 17px;
+    position: absolute;
+    @apply text-gray-500;
+}
+
+.form-div {
+    position: relative;
+}
+
+.form-control {
+    border-color: rgb(197, 195, 195);
+    @apply transition pl-8 duration-300 text-gray-600 focus:placeholder-indigo-400 hover:shadow-lg focus:shadow-lg hover:border-indigo-400 w-full rounded-full py-2 text-sm placeholder-gray-500;
+}
+
+.form-control:active, .form-control:focus {
+    outline: none;
+}
+
+.icon-cancel {
+    @apply absolute text-red-400;
+}
+
+.form-middle {
+    @apply w-full;
+}
+
+.fix-control {
+    padding-left: 36px;
+}
+
+.btn-register {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background: linear-gradient(to right, #f2709c, #ff9472);
+    @apply transition transform hover:-translate-y-1 duration-500 mt-7 focus:outline-none w-full text-white rounded-full hover:shadow-xl shadow-lg hover:border-gray-600 border-2;
+}
+
+.btn-login {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    background: linear-gradient(to right, #3597b3, #71b280);
+    @apply transition transform hover:-translate-y-1 duration-500 mt-6 focus:outline-none w-full text-white rounded-full hover:shadow-xl shadow-lg hover:border-gray-600 border-2;
+}
+
+hr {
+    border-color: rgb(190, 189, 189);
+}
+
+
+.tooltip .tooltiptext {
+    letter-spacing: 0.01rem;
+    font-size: 12px;
+    visibility: hidden;
+    width: 200px;
+    background-color: rgb(94, 94, 94, 0.85);
+    color: rgb(231, 230, 230);
+    text-align: center;
+    padding: 5px 0;
+    padding-bottom: 7px;
+    border-radius: 15px;
+    position: absolute;
+    z-index: 1;
+    bottom: 68%;
+    left: 25%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip-full {
+    bottom: 125%!important;
+    left: 40%!important;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(95, 95, 95, 0.85) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.lastname-control::placeholder {
+    padding-left: 2px;
+}

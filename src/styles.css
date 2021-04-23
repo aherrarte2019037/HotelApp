@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+    overflow: hidden;
     height: calc(100vh - 64px);
 }
 
@@ -13,4 +14,17 @@ body {
 
 .ng-sidebar__content {
     margin-left: 260px;
+}
+
+.btn-swal-success {
+    box-shadow: 1px 5px 10px -1px #818181;
+    @apply bg-blue-500 rounded-2xl py-1 px-8 focus:outline-none text-white hover:bg-blue-600
+}
+
+#swal2-title {
+    @apply text-xl
+}
+
+#swal2-content {
+    @apply text-base
 }
