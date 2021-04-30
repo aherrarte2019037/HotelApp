@@ -1,98 +1,256 @@
-.profile-div h1  {
-    font-size: 13px;
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    font-family: 'Poppins', sans-serif;
-    color: rgb(240, 240, 240);
+.profile-div h1 {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  font-family: 'Poppins', sans-serif;
+  color: rgb(240, 240, 240);
 }
 
-.profile-div h3  {
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    margin-top: 4px;
-    letter-spacing: 1px;
-    color: rgb(238, 238, 238);
-    background-color: rgb(23, 31, 49);
-    margin-left: 23px;
-    margin-right: 23px;
-    @apply rounded-full py-1;
+.profile-div h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  margin-top: 4px;
+  letter-spacing: 1px;
+  color: rgb(238, 238, 238);
+  background-color: rgb(23, 31, 49);
+  margin-left: 23px;
+  margin-right: 23px;
+  @apply rounded-full py-1;
 }
 
 .menu-div button {
-    color: rgb(240, 240, 240);
-    font-family: 'Poppins', sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    @apply text-left pl-5 pr-4 rounded-lg pt-1.5 pb-3 tracking-wide;
-    transition: 0.15s ease-in-out;
+  color: rgb(240, 240, 240);
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  @apply text-left pl-5 pr-4 rounded-lg pt-1.5 pb-3 tracking-wide;
+  transition: background-color 0.15s ease-in-out;
 }
 
 .menu-div button:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-    box-shadow: 0px 4px 10px 2px #1f2335;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 4px 10px 2px #1f2335;
 }
 
 .bg-icon {
-    font-size: 18px;
-    margin-bottom: -10px;
-    @apply mr-1.5 bg-gray-900 p-1.5 rounded-md;
+  font-size: 18px;
+  margin-bottom: -10px;
+  @apply mr-1.5 bg-gray-900 p-1.5 rounded-md;
 }
 
-button:focus, button:active {
-    outline:none;
+button:focus,
+button:active {
+  outline: none;
 }
 
 ion-icon {
-    transition: color 0.15s ease-in-out;
+  transition: color 0.15s ease-in-out;
 }
 
 .btn-logout {
-    background-color: #f14040;
-    font-weight: 300;
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    border: solid 2.4px #0b0e27;
-    box-shadow: 0px 4px 15px 2px #0e0f18;
-    @apply mt-3.5 py-1 px-2.5 rounded-full tracking-wider;
+  background-color: #f14040;
+  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+  border: solid 2.4px #0b0e27;
+  border: 2px solid #f85f5f;
+  box-shadow: 0px 4px 15px 2px #0e0f18;
+  transition: box-shadow 0.5s ease-in;
+  @apply mt-3.5 py-1 px-3 rounded-full tracking-wider;
+}
+
+.btn-logout:hover {
+  background-color: #fa5151;
+  box-shadow: 0px 4px 15px 2px #000000;
 }
 
 .btn-hotel:hover ion-icon {
-    color: #575fcf;
+  color: #575fcf;
 }
 
 .btn-room:hover ion-icon {
-    color: #0be881;
+  color: #0be881;
 }
 
 .btn-reservation:hover ion-icon {
-    color: #fdb735;
+  color: #fdb735;
 }
 
 .btn-bill:hover ion-icon {
-    color: #ef5777;
+  color: #ef5777;
 }
 
 .right-icon {
-    @apply -mb-0.5 float-right mt-2.5;
+  @apply -mb-0.5 float-right mt-2.5;
 }
 
-.bottom-div h1, .bottom-div h2 {
-    font-weight: 300;
-    font-family: 'Poppins', sans-serif;
+.bottom-div h1,
+.bottom-div h2 {
+  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
 }
 
 .bottom-div h2 {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .bottom-div ion-icon {
-    font-size: 20px;
-    bottom: 17px;
-    padding: 5px;
-    @apply bg-gray-800 rounded-md text-gray-200;
+  font-size: 20px;
+  bottom: 17px;
+  padding: 5px;
+  @apply bg-gray-800 rounded-md text-gray-200;
 }
 
 .bottom-div ion-icon:hover {
-    color: rgb(73, 159, 209);
+  color: rgb(73, 159, 209);
+}
+
+.modal-cbox {
+  display: none;
+}
+
+.modal-cbox:checked~div {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-label {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal-div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.modal-content {
+  width: 400px;
+  background: white;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+}
+
+.modal-close {
+  font-size: 19px;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  padding: 3px;
+  position: absolute;
+  right: 13px;
+  top: 7px;
+  @apply text-white hover:text-gray-600;
+}
+
+.top {
+  border-radius: 9px 9px 0 0;
+  background-image: url("../../../assets/images/bgPattern.png");
+  background-repeat: no-repeat;
+  background-position-y: -30px;
+  background-position-x: -25px;
+  background-size: 430px;
+  width: 100%;
+  height: 80px;
+  @apply p-5 -mt-0.5;
+}
+
+.top h1 {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.top h2 {
+  letter-spacing: 0.3px;
+  color: rgb(253, 252, 252);
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: -2px;
+}
+
+input:focus, input:active {
+  outline: none;
+}
+
+.form input {
+  font-size: 14px;
+  color: gray;
+}
+
+.tooltip .tooltiptext {
+  letter-spacing: 0.01rem;
+  font-size: 12px;
+  visibility: hidden;
+  width: 200px;
+  background-color: rgb(94, 94, 94, 0.85);
+  color: rgb(231, 230, 230);
+  text-align: center;
+  padding: 5px 0;
+  padding-bottom: 7px;
+  border-radius: 15px;
+  position: absolute;
+  z-index: 1;
+  bottom: 68%;
+  left: 25%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltip-small {
+  width: 150px;
+  left: 40%;
+  bottom: 75%;
+}
+
+.fix {
+  bottom: 70%!important;
+  left: 40%!important;
+}
+
+.tooltip-full {
+  bottom: 80%!important;
+  left: 40%!important;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(95, 95, 95, 0.85) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.icon-fix {
+  top: 33px
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 50%;
+}
+
+button:disabled:hover {
+  @apply bg-blue-500;
 }

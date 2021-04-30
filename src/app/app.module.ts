@@ -4,12 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SidebarModule } from 'ng-sidebar';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'; 
-
+import { NgxSpinnerModule } from "ngx-spinner";
 import { AppComponent } from './components/main/app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component'
+import { RegisterComponent } from './components/register/register.component';
+import { HotelPageComponent } from './components/hotel-page/hotel-page.component'
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RegisterComponent } from './components/register/register.component'
     NavbarComponent,
     SidebarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    HotelPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import { RegisterComponent } from './components/register/register.component'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxSpinnerModule,
     SidebarModule.forRoot()
   ],
   providers: [],

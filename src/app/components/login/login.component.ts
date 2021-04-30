@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { FormValidatorService } from 'src/app/services/form-validator.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,7 +16,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private formValidator: FormValidatorService 
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +26,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email    : [ '', [Validators.required, Validators.email] ],
       password : [ '', [Validators.required, Validators.minLength(5), Validators.maxLength(30), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,30}$/) ]],
+      remember : [ false ]
     }); 
   };
 
@@ -36,8 +34,6 @@ export class LoginComponent implements OnInit {
     const error = this.loginForm.get(input)?.errors;
     const invalid = this.loginForm.get(input)?.invalid;
    
-    if( this.loginForm.hasError('passwordDontMatch') && input === 'password2' ) return 'Contraseñas No Coinciden'
-
     if( invalid && this.loginForm.get(input)?.dirty || invalid && this.loginForm.get(input)?.touched ) {
       if( 'required' in error! ) return 'Campo Requerido';
       if( 'minlength' in error! ) return `Mínimo ${error.minlength.requiredLength} caracteres`;
@@ -54,9 +50,8 @@ export class LoginComponent implements OnInit {
       this.getSwal('Inicio De Sesión Fallido', 'Datos Inválidos', 'error')
       return this.loginForm.markAllAsTouched()
     };
-    const { email, password } = this.loginForm.value;
-
-    this.authService.login( email, password ).subscribe(
+    const { email, password, remember } = this.loginForm.value;
+    this.authService.login( email, password, remember).subscribe(
       (data: any) => {
         if( data.logged ) this.getSwal( 'Inicio De Sesión Exitoso', `Bienvenido ${data.item.username}`, 'success', '/dashboard' );
         if( !data.logged ) this.getSwal( 'Inicio De Sesión Fallido', data.error, 'error' )},

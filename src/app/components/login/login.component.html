@@ -1,9 +1,7 @@
 <div class="background-div">
 
 <div class="main-container animate__fadeInLeft animate__animated">
-    
-    <div class="form-container absolute bg-white transform sm:rotate-8 rotate-6 bg-opacity-25">
-    </div>
+
 
     <div class="form-container bg-white rounded-3xl shadow-2xl z-10 ">
         <h1 class="text-gray-700 text-3xl font-semibold">Hotel Control</h1>
@@ -12,7 +10,7 @@
         <form [formGroup]="loginForm" (ngSubmit)="login()" class="form">
 
             <div class="form-div mt-12 tooltip">
-                <input class="form-control" type="text" placeholder="Correo Electrónico" formControlName="email">
+                <input class="form-control" type="email" autocomplete="email" placeholder="Correo Electrónico" formControlName="email">
                 <span class="icon-span left-3 top-2"><ion-icon name="mail"></ion-icon></span>
                 <ion-icon *ngIf="getValidationError('email')" name="close-outline" class="absolute top-3 right-4 text-red-400"></ion-icon>
                 <span *ngIf="getValidationError('email')" class="tooltiptext tooltip-full">{{ getValidationError('email') }}</span>
@@ -22,10 +20,23 @@
                 <input class="form-control form-middle mt-7 mr-1" type="password" placeholder="Contraseña" formControlName="password">
                 <span class="icon-span left-3 top-9"><ion-icon name="lock-closed"></ion-icon></span>
                 <ion-icon *ngIf="getValidationError('password')" name="close-outline" class="absolute top-10 right-4 text-red-400"></ion-icon>
-                <span class="text-red-400 p-0 m-0 text-xs absolute left-1 top-16 pt-0.5">{{ getValidationError('password') }}</span>
+                <span *ngIf="getValidationError('password')" class="tooltiptext fix">{{ getValidationError('password') }}</span>
             </div>
-
-            <span class="forgot-pass flex justify-end text-sm text-gray-500 mt-1 hover:underline cursor-pointer">¿Olvidaste tu contraseña?</span>
+            
+            <div class="flex justify-between mt-1.5">
+                <input class="input-cbox hidden" id="cbox" type="checkbox" formControlName="remember"/>
+                <label class="checkbox" for="cbox">
+                    <span>
+                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                        <polyline points="1 5 4 8 11 1"></polyline>
+                    </svg>
+                    </span>
+    
+                    <span>Recordarme</span>
+                </label>
+    
+                <span class="text-sm text-gray-500 mt-1 hover:underline cursor-pointer">¿Olvidaste tu contraseña?</span>
+            </div>
             
             <button type="submit" class="btn-login relative"><ion-icon class="absolute top-0 left-0 rounded-l-2xl" name="paper-plane"></ion-icon>Iniciar Sesión</button>
 
@@ -43,6 +54,9 @@
             <button [routerLink]="['/register']" class="btn-register">Registrarse</button>
 
         </form>
+    </div>
+
+    <div class="form-container form-rotate absolute bg-white transform sm:rotate-8 rotate-6 bg-opacity-25">
     </div>
 </div>
 
