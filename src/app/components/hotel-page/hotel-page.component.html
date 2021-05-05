@@ -1,1 +1,90 @@
-<p>hotel-page works!</p>
+<section class="text-gray-600 body-font main-container">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap -m-4 justify-center">
+      <div class="py-4">
+        <div class="opacity-container mx-5 xl:h-full h-56 pt-9 pb-24 bg-gray-100 bg-opacity-80 lg:h-56 lg:pt-9 px-8 xl:pt-16 xl:pb-24 rounded-xl overflow-hidden text-center relative">
+          <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">HOTEL CONTROL</h2>
+          <h1 class="title-font text-2xl font-medium text-gray-900 mb-3">Hoteles Registrados</h1>
+          <p class="leading-relaxed text-sm mb-3 text-gray-600">Colección de hoteles registrados en nustra aplicación web para llevar el control y la gestión de los mismos.</p>
+          <a class="text-indigo-500 hover:text-indigo-600 px-5 bg-transparent text-sm inline-flex items-center cursor-pointer">Leer Más
+            <svg class="w-4 h-4 ml-0.5 cursor-pointer" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
+            <span class="text-gray-700 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+              <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>1.2K
+            </span>
+            <span class="text-gray-700 inline-flex items-center leading-none text-sm">
+              <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+              </svg>6
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="flex justify-center md:mx-12">
+  <div class="relative w-full max-w-3xl px-5 py-4 mt-10 rounded-xl">
+    <span class="absolute inset-y-0 left-5 flex items-center pl-3">
+        <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </span>
+
+    <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white rounded-xl border border-gray-300 focus:border-transparent ring-indigo-400 ring-opacity-60 focus:outline-none focus:ring" placeholder="Buscar hoteles...">
+</div>
+</div>
+
+<section class="text-gray-600 body-font mb-10">
+  <div class="container px-5 pb-16 pt-12 mx-auto">
+    <div class="flex flex-wrap -mx-4 -my-8 justify-center">
+
+      <div class="py-8 px-4 lg:w-2/4 2xl:w-1/3 flex-grow relative" *ngFor="let hotel of hotels$ | async">
+        <span class="right-10 top-14 absolute inline-flex h-7 w-10 rounded-full bg-purple-400 opacity-75">9.5</span>
+        <div class="h-full flex items-start bg-gray-50 shadow-sm transition duration-500 ease-in-out hover:shadow-md rounded-2xl py-6 pl-2 pr-8">
+          <div class="w-9 pl-2 flex-shrink-0 flex flex-col text-center leading-none">
+            <span class="text-gray-500 pb-2 mb-2 border-b border-gray-200">
+              <img width="23px" height="23px"*ngFor="let item of [].constructor(hotel.stars)" class="star-icon" src="https://img.icons8.com/material-rounded/24/feca57/star--v1.png"/>
+            </span>
+            <span class="font-medium text-lg text-gray-800 title-font leading-none">{{ hotel.stars }}</span>
+          </div>
+          <div class="flex-grow pl-6">
+            <h2 class="tracking-widest title-country title-font font-medium text-indigo-500 mb-1">{{ hotel.country | titlecase}}, {{ hotel.city | titlecase }}</h2>
+            <h1 class="title-font text-xl font-medium text-gray-900 mb-3">{{ hotel.name | titlecase }}</h1>
+            <p class="leading-relaxed mb-5">{{ hotel.description }}</p>
+            <a class="inline-flex items-center">
+              <button class="btn-social flex wobble bg-blue-500 text-white">
+                <div class="social-container">
+                  {{ hotel.likes }}
+                </div>
+                <div class="img-container">
+                  <ion-icon name="thumbs-up-sharp"></ion-icon>
+                </div>
+              </button>
+
+              <button class="ml-2.5 btn-social wobble btn-dislike flex bg-blue-500 text-white">
+                <div class="social-container">
+                  {{ hotel.dislikes }}
+                </div>
+                <div class="img-container">
+                  <ion-icon name="thumbs-down-sharp"></ion-icon>
+                </div>
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
+</section>

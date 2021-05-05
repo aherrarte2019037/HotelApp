@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SnotifyPosition, SnotifyService } from 'ng-snotify';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -28,7 +29,8 @@ export class SidebarComponent implements OnInit {
     private router: Router,
     private spinner: NgxSpinnerService,
     private userService: UserService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private snotifyService: SnotifyService
   ) {
     this.userService.getUserAuthenticated().subscribe( data => {
       this.user = data;
@@ -59,7 +61,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.spinner.show();
+    //this.spinner.show();
     setTimeout(() => this.spinner.hide(), 1000);
   }
 
@@ -81,6 +83,21 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  getValidationError( input: string ) {
+    const error = this.editForm.get(input)?.errors;
+    const invalid = this.editForm.get(input)?.invalid;
+   
+    if( invalid && this.editForm.get(input)?.dirty || invalid && this.editForm.get(input)?.touched ) {
+      if( 'required' in error! ) return 'Campo Requerido';
+      if( 'minlength' in error! ) return `Mínimo ${error.minlength.requiredLength} caracteres`;
+      if( 'maxlength' in error! ) return `Máximo ${error.maxlength.requiredLength}`;
+      if( 'email' in error! ) return 'Correo Electrónico Inválido';
+      if( 'pattern' in error! ) return 'Contraseña Inválida';
+    }
+
+    return null;
+  }
+
   editProfile() {
     if( this.editForm.invalid ) {
       return this.editForm.markAllAsTouched()
@@ -88,10 +105,14 @@ export class SidebarComponent implements OnInit {
 
     this.showIcon = true;
 
-    this.userService.editProfile( this.formChanges ).subscribe( data => {
+    this.userService.editProfile( this.formChanges ).subscribe( 
+      data => {
+      this.snotifyService.success('Perfil editado', { showProgressBar: false, icon: '../../../assets/images/checkCircle.svg', iconClass: 'snotifyIcon', timeout: 1500, position: SnotifyPosition.rightTop })
       this.user = data['item']
       this.user$.next(data['item'])
-    });
+      },
+      error => console.log(error)
+      );
 
     setTimeout(() => {
       this.showIcon = false;

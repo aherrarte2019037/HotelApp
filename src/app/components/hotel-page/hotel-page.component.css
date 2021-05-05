@@ -1,0 +1,110 @@
+.main-container {
+    background-image: url('../../../assets/images/hotelBg.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media only screen and (min-width: 1500px) {
+    .opacity-container {
+      width: 1000px;
+    }
+}
+
+.star-icon {
+  padding-left: 2.5px;;
+}
+
+.btn-social {
+  border: 2px solid rgb(91, 164, 248);
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 15px;
+  height: 27px;
+  box-shadow: 0px 5px 5px 1px #dfdede;
+}
+
+.social-container {
+  border-bottom: 2px solid rgb(91, 164, 248);
+  height: 25px;
+  min-width: 55px;
+  width: max-content;
+  font-size: 12px;
+  padding-top: 3px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  @apply bg-blue-600 pr-2.5 pl-3.5;
+}
+
+.img-container ion-icon {
+  font-size: 14px;
+  color: rgb(240, 239, 239);
+  width: 16px;
+  margin-left: 8px;
+  margin-right: 12px;
+  padding-top: 3.5px;
+}
+
+.btn-dislike {
+  border: 2px solid rgb(247, 106, 106);
+  @apply bg-red-400;
+}
+
+.btn-dislike .social-container {
+  border-bottom: 2px solid rgb(247, 106, 106);
+  @apply bg-red-500;
+}
+
+.btn-dislike .img-container ion-icon {
+  padding-top: 4.5px;
+}
+
+@keyframes wobble {
+  16.65% {
+    -webkit-transform: translateX(4px);
+    transform: translateX(5px);
+  }
+  33.3% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-3px);
+  }
+  49.95% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(1px);
+  }
+  66.6% {
+    -webkit-transform: translateX(-1px);
+    transform: translateX(-2px);
+  }
+  83.25% {
+    -webkit-transform: translateX(0px);
+    transform: translateX(1px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+.wobble {
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.wobble:hover, .wobble:focus, .wobble:active {
+  -webkit-animation-name: wobble;
+  animation-name: wobble;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+
+.title-country {
+  font-weight: 500;
+  font-size: 12px;
+}

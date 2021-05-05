@@ -19,7 +19,7 @@
   @apply rounded-full py-1;
 }
 
-.menu-div button {
+.menu-div a {
   color: rgb(240, 240, 240);
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
@@ -28,7 +28,7 @@
   transition: background-color 0.15s ease-in-out;
 }
 
-.menu-div button:hover {
+.menu-div a:hover {
   background-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0px 4px 10px 2px #1f2335;
 }
@@ -39,8 +39,8 @@
   @apply mr-1.5 bg-gray-900 p-1.5 rounded-md;
 }
 
-button:focus,
-button:active {
+a:focus,
+a:active {
   outline: none;
 }
 
@@ -69,7 +69,25 @@ ion-icon {
   color: #575fcf;
 }
 
+.btn-hotel-active {
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 4px 10px 2px #1f2335;
+}
+
+.btn-hotel-active ion-icon {
+  color: #575fcf;
+}
+
 .btn-room:hover ion-icon {
+  color: #0be881;
+}
+
+.btn-room-active {
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 4px 10px 2px #1f2335;
+}
+
+.btn-room-active ion-icon {
   color: #0be881;
 }
 
@@ -77,7 +95,25 @@ ion-icon {
   color: #fdb735;
 }
 
+.btn-reservation-active {
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 4px 10px 2px #1f2335;
+}
+
+.btn-reservation-active ion-icon {
+  color: #fdb735;
+}
+
 .btn-bill:hover ion-icon {
+  color: #ef5777;
+}
+
+.btn-bill-active {
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 4px 10px 2px #1f2335;
+}
+
+.btn-bill-active ion-icon {
   color: #ef5777;
 }
 
@@ -121,6 +157,7 @@ ion-icon {
 }
 
 .modal-div {
+  z-index: 9;
   position: absolute;
   left: 0;
   right: 0;
@@ -217,8 +254,15 @@ input:focus, input:active {
 }
 
 .fix {
+  width: 135px!important;
   bottom: 70%!important;
-  left: 40%!important;
+  left: 47%!important;
+}
+
+.email-fix {
+  width: 175px!important;
+  bottom: 70%!important;
+  left: 44%!important;
 }
 
 .tooltip-full {

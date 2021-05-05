@@ -1,4 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { SidebarModule } from 'ng-sidebar';
@@ -10,7 +11,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { HotelPageComponent } from './components/hotel-page/hotel-page.component'
+import { HotelPageComponent } from './components/hotel-page/hotel-page.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,13 @@ import { HotelPageComponent } from './components/hotel-page/hotel-page.component
     ReactiveFormsModule,
     HttpClientModule,
     NgxSpinnerModule,
+    SnotifyModule,
     SidebarModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: 'SnotifyToastConfig', useValue: ToastDefaults },
+    SnotifyService
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

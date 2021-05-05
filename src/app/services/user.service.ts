@@ -9,12 +9,10 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl: string;
+  apiUrl: string = this.globalService.getApiUrl();
   token: string = this.auth.getToken();
 
-  constructor( private globalService : GlobalService, private http: HttpClient, private auth: AuthService ) {
-    this.apiUrl = this.globalService.getApiUrl();
-  }
+  constructor( private globalService : GlobalService, private http: HttpClient, private auth: AuthService ) { }
 
   getUserAuthenticated() {
     const id = jwt(this.token)['sub'];

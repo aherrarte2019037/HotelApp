@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     const { email, password, remember } = this.loginForm.value;
     this.authService.login( email, password, remember).subscribe(
       (data: any) => {
-        if( data.logged ) this.getSwal( 'Inicio De Sesión Exitoso', `Bienvenido ${data.item.username}`, 'success', '/dashboard' );
+        if( data.logged ) this.getSwal( 'Inicio De Sesión Exitoso', `Bienvenido ${data.item.username}`, 'success', '/hotels' );
         if( !data.logged ) this.getSwal( 'Inicio De Sesión Fallido', data.error, 'error' )},
         
       error => {

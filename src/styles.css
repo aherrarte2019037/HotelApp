@@ -2,9 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
     overflow: hidden;
-    height: calc(100vh - 64px);
+    height: 100vh;
 }
 
 .ng-sidebar {
@@ -18,13 +22,50 @@ body {
 
 .btn-swal-success {
     box-shadow: 1px 5px 10px -1px #818181;
-    @apply bg-blue-500 rounded-2xl py-1 px-8 focus:outline-none text-white hover:bg-blue-600
+    @apply bg-blue-500 rounded-2xl py-1 px-8 focus:outline-none text-white hover:bg-blue-600;
 }
 
 #swal2-title {
-    @apply text-xl
+    @apply text-xl;
 }
 
 #swal2-content {
-    @apply text-base
+    @apply text-base;
+}
+
+.snotify-icon {
+    margin-right: 13px!important;
+    width: 21px!important;
+    height: 21px!important;
+}
+
+.snotify-success {
+    background-color: #4cdc89!important;
+}
+
+.snotifyToast {
+    border-radius: 10px!important;
+}
+
+.snotify {
+    width: 250px!important;
+}
+
+.snotifyToast__inner {
+    min-height: 50px!important;
+}
+
+.snotifyToast__body {
+    @apply tracking-wide ml-1.5;
+    font-size: 13px!important;
+    font-family: 'Poppins', sans-serif!important;
+    color: white!important;
+}
+
+.snotify-rightTop {
+    top: 75px!important;
+}
+
+.snotifyToast.animated.snotify-success.fadeIn {
+    box-shadow: 0px 4px 5px 2px #3a3a3a17;
 }

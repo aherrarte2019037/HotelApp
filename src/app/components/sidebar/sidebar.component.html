@@ -10,27 +10,30 @@
       </div>
       <h1 class="mt-1 cursor-pointer">{{ ( user$ | async )?.firstname }} {{ ( user$ | async )?.lastname }}<i class="icon-angle-down"></i></h1>
       <h3>{{ ( user$ | async )?.email }}</h3>
-      <button class="btn-logout" (click)="logOut()">Cerrar Sesión</button>
+      <button class="btn-logout focus:outline-none" (click)="logOut()">Cerrar Sesión</button>
 
     </div>
 
     <div class="menu-div flex flex-col justify-start mt-7 space-y-3 px-6 animate__animated animate__fadeInLeft">
-      <button class="btn-hotel">
+      <a class="btn-hotel" [routerLink]="['/hotels']" routerLinkActive="btn-hotel-active">
         <ion-icon class="bg-icon" name="business"></ion-icon>Hoteles<ion-icon class="right-icon"
           name="chevron-forward-outline"></ion-icon>
-      </button>
-      <button class="btn-room">
+      </a>
+
+      <a class="btn-room" [routerLink]="['/rooms']" routerLinkActive="btn-room-active">
         <ion-icon class="bg-icon" name="bed"></ion-icon>Habitaciones<ion-icon class="right-icon"
           name="chevron-forward-outline"></ion-icon>
-      </button>
-      <button class="btn-reservation">
+      </a>
+
+      <a class="btn-reservation" [routerLink]="['/reservations']" routerLinkActive="btn-reservation-active">
         <ion-icon class="bg-icon" name="calendar-number"></ion-icon>Reservaciones<ion-icon class="right-icon"
           name="chevron-forward-outline"></ion-icon>
-      </button>
-      <button class="btn-bill">
+      </a>
+
+      <a class="btn-bill" [routerLink]="['/bills']" routerLinkActive="btn-bill-active">
         <ion-icon class="bg-icon" name="cash"></ion-icon>Facturas<ion-icon class="right-icon"
           name="chevron-forward-outline"></ion-icon>
-      </button>
+      </a>
     </div>
 
     <div class="bottom-div w-full h-16 bg-gray-900 absolute bottom-0 py-3.5">
@@ -72,24 +75,32 @@
                           <label class="block text-xs font-medium text-gray-700">Nombre</label>
                           <ion-icon name="card-outline" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
                           <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="firstname">
+                          <ion-icon *ngIf="getValidationError('firstname')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                          <span *ngIf="getValidationError('firstname')" class="tooltiptext fix">{{ getValidationError('firstname') }}</span>
                         </div>
 
                         <div class="col-span-6 sm:col-span-3 relative tooltip">
                           <label class="block text-xs font-medium text-gray-700">Apellido</label>
                           <ion-icon name="card-outline" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
                           <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="lastname">
+                          <ion-icon *ngIf="getValidationError('lastname')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                          <span *ngIf="getValidationError('lastname')" class="tooltiptext fix">{{ getValidationError('lastname') }}</span>
                         </div>
 
                         <div class="col-span-6 relative tooltip">
                           <label class="block text-xs font-medium text-gray-700">Correo</label>
                           <ion-icon name="at-outline" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
                           <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="email">
+                          <ion-icon *ngIf="getValidationError('email')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                          <span *ngIf="getValidationError('email')" class="tooltiptext email-fix">{{ getValidationError('email') }}</span>
                         </div>
 
                         <div class="col-span-6 relative tooltip">
                           <label class="block text-xs font-medium text-gray-700">Usuario</label>
                           <ion-icon name="person" class="absolute top-8 left-2.5 text-sm text-gray-600"></ion-icon>
                           <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="username">
+                          <ion-icon *ngIf="getValidationError('username')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                          <span *ngIf="getValidationError('email')" class="tooltiptext email-fix">{{ getValidationError('username') }}</span>
                         </div>
 
                       </div>
@@ -122,7 +133,6 @@
     </div>
 
     <app-hotel-page></app-hotel-page>
-
 
   </div>
 
