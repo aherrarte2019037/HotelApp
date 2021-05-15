@@ -16,9 +16,9 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): boolean  {
 
       const isAuthenticated = this.auth.isAuthenticated();
-
+      
       switch( state.url ) {
-        case '/hotels':
+        case '/dashboard/hotels':
           if( !isAuthenticated ){
             this.router.navigate(['login']);
             return false;
@@ -27,10 +27,19 @@ export class AuthGuard implements CanActivate {
             return true;
           }
 
+          case '/dashboard/rooms':
+            if( !isAuthenticated ){
+              this.router.navigate(['login']);
+              return false;
+  
+            } else {
+              return true;
+            }  
+
         case '/login': 
           if( !isAuthenticated ) return true;
           if( isAuthenticated ) {
-            this.router.navigate(['hotels']);
+            this.router.navigate(['dashboard/hotels']);
             return false;
           }
           

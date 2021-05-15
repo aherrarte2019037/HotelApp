@@ -15,6 +15,7 @@ export class UserService {
   constructor( private globalService : GlobalService, private http: HttpClient, private auth: AuthService ) { }
 
   getUserAuthenticated() {
+    this.token = localStorage.getItem( 'token' )? localStorage.getItem( 'token' ):sessionStorage.getItem( 'token' );
     const id = jwt(this.token)['sub'];
     const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
 
@@ -25,6 +26,12 @@ export class UserService {
     const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
 
     return this.http.put<User>( `${this.apiUrl}/user`, { update }, { headers } )
+  }
+
+  getAdminHotelUnassigned() {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+
+    return this.http.get<User[]>( `${this.apiUrl}/user/admin/unassigned`, { headers } );
   }
 
 }

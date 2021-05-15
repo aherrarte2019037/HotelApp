@@ -27,12 +27,13 @@ export class RegisterComponent implements OnInit {
 
   buildForm() {
     this.registerForm = this.formBuilder.group({
-      username : [ '', [Validators.required, Validators.minLength(5), Validators.maxLength(30)] ],
-      firstname: [ '', [Validators.required, Validators.minLength(2), Validators.maxLength(30)] ],
-      lastname : [ '', [Validators.required, Validators.minLength(2), Validators.maxLength(30)] ],
-      email    : [ '', [Validators.required, Validators.email] ],
-      password : [ '', [Validators.required, Validators.minLength(5), Validators.maxLength(30), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,30}$/) ]],
-      password2: [ '', [Validators.required] ]
+      username  : [ '', [Validators.required, Validators.minLength(5), Validators.maxLength(30)] ],
+      firstname : [ '', [Validators.required, Validators.minLength(2), Validators.maxLength(30)] ],
+      lastname  : [ '', [Validators.required, Validators.minLength(2), Validators.maxLength(30)] ],
+      email     : [ '', [Validators.required, Validators.email] ],
+      password  : [ '', [Validators.required, Validators.minLength(5), Validators.maxLength(30), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,30}$/) ]],
+      password2 : [ '', [Validators.required] ],
+      hotelAdmin: [ false ]
     },
     {
       validators: this.formValidator.passwordMatch('password', 'password2')
@@ -61,6 +62,43 @@ export class RegisterComponent implements OnInit {
       this.getSwal('Registro Fallido', 'Datos Inválidos', 'error')
       return this.registerForm.markAllAsTouched()
     };
+
+    // Modal para ingresar credenciales app_admin
+    if( this.registerForm.get('hotelAdmin').value ) {
+      Swal.fire({
+        title: 'Submit your Github username',
+        input: 'text',
+        inputAttributes: {
+          autocapitalize: 'off'
+        },
+        showCancelButton: true,
+        confirmButtonText: 'Look up',
+        showLoaderOnConfirm: true,
+        preConfirm: (login) => {
+          return fetch(`//api.github.com/users/${login}`)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(response.statusText)
+              }
+              return response.json()
+            })
+            .catch(error => {
+              Swal.showValidationMessage(
+                `Request failed: ${error}`
+              )
+            })
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: `${result.value.login}'s avatar`,
+            imageUrl: result.value.avatar_url
+          })
+        }
+      })
+    }
+
     const user: User = this.registerForm.value;
     this.authService.register( user ).subscribe(
       (data: any) => {

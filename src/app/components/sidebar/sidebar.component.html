@@ -6,7 +6,7 @@
     <div class="text-center bg-gray-900 profile-div text-white mx-auto pt-w pb-6">
 
       <div class="mx-auto">
-        <img class="mx-auto pt-3" src="../../../assets/images/male2.png" width="100px" height="100px">
+        <img class="mx-auto pt-5" src="../../../assets/images/avatar2.png" width="65px" height="65px">
       </div>
       <h1 class="mt-1 cursor-pointer">{{ ( user$ | async )?.firstname }} {{ ( user$ | async )?.lastname }}<i class="icon-angle-down"></i></h1>
       <h3>{{ ( user$ | async )?.email }}</h3>
@@ -15,17 +15,17 @@
     </div>
 
     <div class="menu-div flex flex-col justify-start mt-7 space-y-3 px-6 animate__animated animate__fadeInLeft">
-      <a class="btn-hotel" [routerLink]="['/hotels']" routerLinkActive="btn-hotel-active">
+      <a class="btn-hotel" [routerLink]="['hotels']" routerLinkActive="btn-hotel-active">
         <ion-icon class="bg-icon" name="business"></ion-icon>Hoteles<ion-icon class="right-icon"
           name="chevron-forward-outline"></ion-icon>
       </a>
 
-      <a class="btn-room" [routerLink]="['/rooms']" routerLinkActive="btn-room-active">
+      <a class="btn-room" [routerLink]="['rooms']" routerLinkActive="btn-room-active">
         <ion-icon class="bg-icon" name="bed"></ion-icon>Habitaciones<ion-icon class="right-icon"
           name="chevron-forward-outline"></ion-icon>
       </a>
 
-      <a class="btn-reservation" [routerLink]="['/reservations']" routerLinkActive="btn-reservation-active">
+      <a class="btn-reservation" [routerLink]="['reservations']" routerLinkActive="btn-reservation-active">
         <ion-icon class="bg-icon" name="calendar-number"></ion-icon>Reservaciones<ion-icon class="right-icon"
           name="chevron-forward-outline"></ion-icon>
       </a>
@@ -36,9 +36,16 @@
       </a>
     </div>
 
-    <div class="bottom-div w-full h-16 bg-gray-900 absolute bottom-0 py-3.5">
-      <h1 class="text-gray-50 text-left px-9 text-sm tracking-wider pb-0">{{ ( user$ | async  )?.role | titlecase}}</h1>
-      <h2 class="text-gray-400 text-left px-9 tracking-wider pt-0">{{ ( user$ | async )?.username }}</h2>
+    <div class="bottom-div w-full h-16 bg-gray-900 absolute bottom-16 py-3.5">
+      <h1 class="text-gray-50 text-left px-9 text-sm tracking-wider pb-0">{{ ( user$ | async  )?.username}}</h1>      
+      <ng-container [ngSwitch]="( user$ | async )?.role">
+        <h2 *ngSwitchCase="'client'" class="text-gray-400 text-left px-9 tracking-wide pt-0">Cliente</h2>
+
+        <h2 *ngSwitchCase="'hotel_admin'" class="text-gray-400 text-left px-9 tracking-wide pt-0">Administrador De Hotel</h2>
+
+        <h2 *ngSwitchCase="'app_admin'" class="text-gray-400 text-left px-9 tracking-wide pt-0">Administrador De App</h2>
+      </ng-container>
+
       <ion-icon (click)="checked = !checked" class="cursor-pointer absolute right-10" name="settings-outline">
       </ion-icon>
     </div>
@@ -132,10 +139,8 @@
       </div>
     </div>
 
-    <app-hotel-page></app-hotel-page>
+    <router-outlet></router-outlet>
 
   </div>
 
 </ng-sidebar-container>
-
-<ngx-spinner></ngx-spinner>

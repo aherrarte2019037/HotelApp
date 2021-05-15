@@ -53,6 +53,19 @@
                     <ion-icon *ngIf="getValidationError('password2')" name="close-outline" class="absolute top-10 right-4 text-red-400"></ion-icon>
                     <span *ngIf="getValidationError('password2')" class="tooltiptext">{{ getValidationError('password2') }}</span>
                 </div>
+
+                <div class="flex justify-between mt-1.5">
+                    <input class="input-cbox hidden" id="cbox" type="checkbox" formControlName="hotelAdmin"/>
+                    <label class="checkbox" for="cbox">
+                        <span>
+                        <svg width="12px" height="9px" viewbox="0 0 12 9">
+                            <polyline points="1 5 4 8 11 1"></polyline>
+                        </svg>
+                        </span>
+        
+                        <span>Administrador de hotel</span>
+                    </label>
+                </div>
     
                 <button type="submit" class="btn-register">Registrarse</button>
     

@@ -35,7 +35,7 @@ export class AuthService {
     } 
   }
 
-  getToken() {
+  getToken() {    
     return localStorage.getItem( 'token' )? localStorage.getItem( 'token' ):sessionStorage.getItem( 'token' );
   }
 

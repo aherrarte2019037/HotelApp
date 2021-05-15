@@ -22,6 +22,7 @@
   border-radius: 15px;
   height: 27px;
   box-shadow: 0px 5px 5px 1px #dfdede;
+  @apply focus:outline-none;
 }
 
 .social-container {
@@ -107,4 +108,316 @@
 .title-country {
   font-weight: 500;
   font-size: 12px;
+}
+
+.score {
+  padding-top: 3.4px;
+  padding-left: 12px;
+}
+
+.overlay-container {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  @apply rounded-t-2xl;
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.671);
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-container:hover .image {
+  opacity: 0.8;
+}
+
+.overlay-container:hover .middle {
+  opacity: 1;
+}
+
+.btn-detail {
+  width: 142px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 60%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: transparent;
+  border-radius: 50px;
+  border: 2px solid white;
+  color: white;
+  font-size: 12px;
+  padding: 5px 28px;
+  @apply tracking-wider hover:bg-white hover:text-black;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease-in;
+}
+
+.btn-detail-fix {
+  bottom: 50%!important;
+}
+
+.btn-detail:hover {
+  font-weight: 600;
+}
+
+.btn-edit {
+  bottom: 38%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}
+
+.card-container:hover .shadow-container {
+  @apply shadow-lg;
+} 
+
+.dashboard-card {
+  background: linear-gradient(to left, #36d1dc, #5b86e5);
+}
+
+.btn-add-hotel {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 25px;
+  border: 2px solid;
+  @apply border-blue-400 border-opacity-90 focus:outline-none tracking-wider shadow-md hover:shadow-xl transition-shadow duration-300;
+}
+
+.btn-add-service {
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 25px;
+  border: 2px solid;
+  @apply border-green-400 border-opacity-50 focus:outline-none tracking-wider shadow-md hover:shadow-xl transition-shadow duration-300;
+}
+
+.btn-add-hotel:hover {
+  outline: none;
+  background-color: rgb(69, 101, 245);
+}
+
+.btn-add-service:hover {
+  outline: none;
+  background-color: rgb(69, 101, 245);
+}
+
+.modal-cbox {
+  display: none;
+}
+
+.modal-cbox:checked~div {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-label {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal-div {
+  z-index: 9;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.modal-content {
+  @apply shadow-2xl;
+  width: 480px;
+  background: white;
+  position: absolute;
+  top: calc(34% - 9%);
+  left: calc(50% - 110px);
+  border-radius: 10px;
+}
+
+.fix-modal {
+  @apply shadow-2xl;
+  width: 480px;
+  background: white;
+  position: absolute;
+  top: 34%;
+  left: calc(50% - 110px);
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  .modal-content {
+    left: calc(22% - 65px);
+  }
+}
+
+.modal-close {
+  font-size: 19px;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  padding: 3px;
+  position: absolute;
+  right: 13px;
+  top: 7px;
+  @apply text-white hover:text-gray-600;
+}
+
+.top {
+  border-radius: 9px 9px 0 0;
+  background-image: url("../../../assets/images/bgPattern2.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 80px;
+  @apply p-5 -mt-0.5;
+}
+
+.modal-2 {
+  background-image: url("../../../assets/images/bgPattern3.png");
+}
+
+.top h1 {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.top h2 {
+  letter-spacing: 0.3px;
+  color: rgb(253, 252, 252);
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: -2px;
+}
+
+input:focus, input:active {
+  outline: none;
+}
+
+.form input {
+  font-size: 14px;
+  color: gray;
+}
+
+.tooltip .tooltiptext {
+  letter-spacing: 0.01rem;
+  font-size: 12px;
+  visibility: hidden;
+  width: 200px;
+  background-color: rgb(94, 94, 94, 0.85);
+  color: rgb(231, 230, 230);
+  text-align: center;
+  padding: 5px 0;
+  padding-bottom: 7px;
+  border-radius: 15px;
+  position: absolute;
+  z-index: 1;
+  bottom: 68%;
+  left: 25%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltip-small {
+  width: 150px;
+  left: 40%;
+  bottom: 75%;
+}
+
+.fix {
+  width: 135px!important;
+  bottom: 70%!important;
+  left: 47%!important;
+}
+
+.fix-dropdown {
+  width: 145px!important;
+  bottom: 70%!important;
+  left: 44%!important;
+}
+
+.email-fix {
+  width: 175px!important;
+  bottom: 70%!important;
+  left: 44%!important;
+}
+
+.tooltip-full {
+  bottom: 80%!important;
+  left: 40%!important;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(95, 95, 95, 0.85) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.icon-fix {
+  top: 33px
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 45%;
+}
+
+button:disabled:hover {
+  @apply bg-blue-500;
+}
+
+.dropdown {
+  z-index: 9999999;
+}
+
+.dropdown:focus-within .dropdown-menu {
+  opacity:1;
+  transform: translate(0) scale(1);
+  visibility: visible;
+}
+
+.btn-dropdown {
+  padding-top: 8.5px;
+  padding-bottom: 8.5px;
+  color: gray;
+  @apply inline-flex justify-center w-full px-3 text-sm transition duration-150 ease-in-out bg-gray-100 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300;
+}
+
+.btn-dropdow-menu {
+  @apply text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left cursor-pointer transition duration-200 hover:bg-blue-400 hover:text-white;
 }

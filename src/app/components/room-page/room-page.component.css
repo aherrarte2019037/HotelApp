@@ -1,0 +1,342 @@
+.main-container {
+    background-image: url('../../../assets/images/roomBg.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+@media only screen and (min-width: 1500px) {
+    .opacity-container {
+      width: 1000px;
+    }
+}
+
+.dashboard-card {
+    background: linear-gradient(to right, #0fd3bc, #96c93d);
+}
+
+.chart-icon {
+    color: #3bfc75;
+}
+
+.btn-add-room {
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 25px;
+    border: 2px solid;
+    @apply border-indigo-400 focus:outline-none tracking-wider shadow-md hover:shadow-xl transition-shadow duration-300 border-opacity-90;
+}
+  
+.btn-add-room:hover {
+    outline: none;
+    background-color: rgb(69, 101, 245);
+}
+
+.rooms-container {
+  font-family: 'Poppins', sans-serif;
+}
+
+.pattern-container {
+    background-image: url('../../../assets/images/linesBg.png');
+    background-size: cover;
+}
+
+.solid-container {
+    background-color: rgb(87 115 195);
+}
+
+.btn-reserve {
+    width: 110px;
+    font-size: 13px;
+    background-color: rgb(62 94 251);
+}
+
+.btn-reserve:hover {
+    background-color: rgb(69, 81, 253)
+}
+
+.btn-services {
+    width: 110px;
+    font-size: 13px;
+    background-color: rgb(253, 90, 112)
+}
+
+.btn-services:hover {
+    background-color: rgb(243, 85, 138)
+}
+
+.modal-cbox {
+    display: none;
+}
+  
+.modal-cbox:checked~div {
+    visibility: visible;
+    opacity: 1;
+}
+  
+.modal-label {
+    text-decoration: underline;
+    cursor: pointer;
+}
+  
+.modal-div {
+    z-index: 9;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+  
+.modal-content {
+    @apply shadow-2xl;
+    width: 480px;
+    background: white;
+    position: absolute;
+    top: 39%;
+    left: calc(50% - 110px);
+    border-radius: 10px;
+}
+  
+@media screen and (max-width: 700px) {
+    .modal-content {
+      left: calc(22% - 65px);
+    }
+}
+  
+.modal-close {
+    font-size: 19px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+    position: absolute;
+    right: 7px;
+    top: 2px;
+    @apply text-white hover:text-gray-600;
+}
+
+.modal-3 .modal-close {
+    @apply text-gray-600 hover:text-red-500;
+}
+  
+.top {
+    border-radius: 9px 9px 0 0;
+    background-image: url("../../../assets/images/bgPattern3.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 80px;
+    @apply p-7 pt-8 -mt-0.5;
+}
+
+.modal-2 {
+    background-image: url("../../../assets/images/bgPattern4.png");
+}
+
+.top-modal-3 {
+    background-image: none;
+}
+  
+.top h1 {
+    color: whitesmoke;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+  
+.top h2 {
+    letter-spacing: 0.3px;
+    color: whitesmoke;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: -2px;
+}
+  
+input:focus, input:active {
+    outline: none;
+}
+
+.form input {
+    font-size: 14px;
+    color: gray;
+}
+
+button:disabled {
+    cursor: default;
+    opacity: 45%;
+}
+  
+button:disabled:hover {
+    @apply bg-blue-500;
+}
+
+.tooltip .tooltiptext {
+    letter-spacing: 0.01rem;
+    font-size: 12px;
+    visibility: hidden;
+    width: 200px;
+    background-color: rgb(94, 94, 94, 0.85);
+    color: rgb(231, 230, 230);
+    text-align: center;
+    padding: 5px 0;
+    padding-bottom: 7px;
+    border-radius: 15px;
+    position: absolute;
+    z-index: 1;
+    bottom: 68%;
+    left: 25%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltip-small {
+    width: 150px;
+    left: 40%;
+    bottom: 75%;
+}
+
+.tooltip-big {
+    width: 185px!important;
+    bottom: 70%!important;
+    left: 34%!important;
+}
+
+.fix {
+    width: 135px!important;
+    bottom: 70%!important;
+    left: 47%!important;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(95, 95, 95, 0.85) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+.icon-fix {
+    top: 33px
+}
+
+.fix-dropdown {
+    width: 145px!important;
+    bottom: 70%!important;
+    left: 44%!important;
+}
+
+.dropdown {
+    z-index: 9999999;
+}
+  
+.dropdown:focus-within .dropdown-menu {
+    opacity:1;
+    transform: translate(0) scale(1);
+    visibility: visible;
+}
+  
+.btn-dropdown {
+    padding-top: 8.5px;
+    padding-bottom: 8.5px;
+    color: gray;
+    @apply inline-flex justify-center w-full px-3 text-sm transition duration-150 ease-in-out bg-gray-100 rounded-md hover:text-gray-500 focus:outline-none focus:border-blue-300;
+}
+  
+.btn-dropdow-menu {
+    @apply text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left cursor-pointer transition duration-200 hover:bg-blue-400 hover:text-white;
+}
+
+.animate{
+    -webkit-animation-duration: 0.7s;
+    animation-duration: 0.7s;
+    -webkit-animation-duration: 0.7s;
+    animation-duration: 0.7s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+  
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+}
+  
+  .fadeIn {
+    animation-name: fadeIn;
+}
+
+.btn-close-modal {
+    @apply tracking-wide;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+}
+
+.btn-save-modal {
+    @apply tracking-wide;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+}
+
+.btn-date-close {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    @apply bg-red-500 mb-2 tracking-wide mr-2 text-white px-3.5 py-1 ring ring-red-500 ring-opacity-50 rounded-full;
+}
+
+.btn-date-apply {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    @apply bg-blue-500 mb-2 tracking-wide mr-2 text-white px-3.5 py-1 ring ring-blue-500 ring-opacity-50 rounded-full;
+}
+
+mat-form-field.mat-form-field {
+    font-size: 13px;
+}
+
+li>ul                 { transform: translatex(100%) scale(0) }
+  li:hover>ul           { transform: translatex(101%) scale(1) }
+  li > button svg       { transform: rotate(-90deg) }
+  li:hover > button svg { transform: rotate(-270deg) }
+
+  .group:hover .group-hover\:scale-100 { transform: scale(1) }
+  .group:hover .group-hover\:-rotate-180 { transform: rotate(180deg) }
+  .scale-0 { transform: scale(0) }
+  .min-w-32 { min-width: 8rem }
+
+.wave-bg {
+    background-image: url("../../../assets/images/waveBg.png");
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    height: 118px;
+    border-radius: 10px;
+}
+
+.btn-close-service {
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.title-no-service {
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif; 
+}

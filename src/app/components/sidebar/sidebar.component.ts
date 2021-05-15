@@ -1,10 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SnotifyPosition, SnotifyService } from 'ng-snotify';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -21,23 +19,17 @@ export class SidebarComponent implements OnInit {
   showIcon: boolean = false;
   activateEdit: boolean = false;
   formChanges: any = {};
-  user   : User;
+  user: User;
   user$ = new BehaviorSubject({});
 
   constructor(
     private auth: AuthService,
     private router: Router,
-    private spinner: NgxSpinnerService,
     private userService: UserService,
     private formBuilder: FormBuilder,
     private snotifyService: SnotifyService
-  ) {
-    this.userService.getUserAuthenticated().subscribe( data => {
-      this.user = data;
-      this.user$.next( data )
-      this.asignFormValues();
-    });
-  }
+  )
+  { }
 
   asignFormValues() {
     this.editForm.get('firstname').setValue(this.user.firstname);
@@ -61,8 +53,11 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.spinner.show();
-    setTimeout(() => this.spinner.hide(), 1000);
+    this.userService.getUserAuthenticated().subscribe( data => {
+      this.user = data;
+      this.user$.next( data )
+      this.asignFormValues();
+    });
   }
 
   buildForm() {

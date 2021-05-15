@@ -1,90 +1,336 @@
-<section class="text-gray-600 body-font main-container">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-wrap -m-4 justify-center">
-      <div class="py-4">
-        <div class="opacity-container mx-5 xl:h-full h-56 pt-9 pb-24 bg-gray-100 bg-opacity-80 lg:h-56 lg:pt-9 px-8 xl:pt-16 xl:pb-24 rounded-xl overflow-hidden text-center relative">
-          <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">HOTEL CONTROL</h2>
-          <h1 class="title-font text-2xl font-medium text-gray-900 mb-3">Hoteles Registrados</h1>
-          <p class="leading-relaxed text-sm mb-3 text-gray-600">Colección de hoteles registrados en nustra aplicación web para llevar el control y la gestión de los mismos.</p>
-          <a class="text-indigo-500 hover:text-indigo-600 px-5 bg-transparent text-sm inline-flex items-center cursor-pointer">Leer Más
-            <svg class="w-4 h-4 ml-0.5 cursor-pointer" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
-          </a>
-          <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
-            <span class="text-gray-700 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
-              <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-              </svg>1.2K
-            </span>
-            <span class="text-gray-700 inline-flex items-center leading-none text-sm">
-              <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-              </svg>6
-            </span>
-          </div>
-        </div>
-      </div>
+<ng-container *ngIf="showContent">
 
+  <div class="modal">
+    <label class="modal-label hidden"></label>
+    <input [checked]="showAddModal" class="modal-cbox hidden" type="checkbox">
+    <div class="modal-div">
+      <div class="modal-content pb-6">
+  
+        <div class="top">
+          <h1>Añadir Hotel</h1>
+          <h2>Aqui puedes añadir un hotel para gestionarlo</h2>
+        </div>
+  
+        <label (click)="showAddModal = !showAddModal; resetAddHotelForm(); showDropdownError = false;" class="modal-close">
+          <ion-icon name="close"></ion-icon>
+        </label>
+        <input class="modal-cbox " type="checkbox">
+  
+        <div class="middle-modal px-5 pt-6">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="col-span-2">
+  
+              <form class="form" [formGroup]="addHotelForm" (ngSubmit)="addHotel()">
+                <div class="shadow overflow-hidden sm:rounded-md">
+                  <div class="px-4 py-5 bg-white">
+                    <div class="grid grid-cols-6 gap-y-6 gap-x-2">
+  
+                      <div class="col-span-3 relative tooltip">
+                        <label class="block text-xs font-medium text-gray-700">Nombre</label>
+                        <ion-icon name="card-outline" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
+                        <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="name">
+                        <ion-icon *ngIf="getValidationError('name')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                        <span *ngIf="getValidationError('name')" class="tooltiptext fix">{{ getValidationError('name') }}</span>
+                      </div>
+  
+                      <div class="text-left dropdown relative col-span-3">
+                        <label class="block text-xs font-medium text-gray-700">Administrador</label>
+                        <ion-icon name="person" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
+                        <span class="rounded-sm shadow-sm tooltip">
+                          <button (click)="hideDropdown = false" (focusout)="setDropdownError()" class="btn-dropdown mt-1.5" type="button">
+                            <span class="left-8 absolute">{{ dropdownValue }}</span>
+                            <span *ngIf="showDropdownError" class="tooltiptext fix-dropdown">Campo Requerido</span>
+                            <ion-icon *ngIf="showDropdownError" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                            <svg [class.invisible]="showDropdownError" class="w-5 h-5 ml-auto -mr-0" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                          </button>
+                        </span>
+                        <div [hidden]="hideDropdown" class="opacity-0 dropdown-menu transition-all duration-300 transform origin-top-right -translate-y-4 scale-95">
+                          <div class="absolute right-0 w-56 mt-0 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg outline-none" aria-labelledby="headlessui-menu-button-1" id="headlessui-menu-items-117" role="menu">
+                            <div class="py-1">
+                              <a *ngIf="hotelAdminUnassigned?.length === 0" (click)="hideDropdown = !hideDropdown" class="btn-dropdow-menu" tabindex="0" >No hay usuarios disponibles</a>
+                              <a (click)="setDropdownValue( user ); hideDropdown = !hideDropdown" *ngFor="let user of hotelAdminUnassigned" class="btn-dropdow-menu" tabindex="0" >{{ user.firstname | titlecase}} {{ user.lastname | titlecase}}</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>  
+  
+                      <div class="col-span-3 relative tooltip">
+                        <label class="block text-xs font-medium text-gray-700">Estrellas</label>
+                        <ion-icon name="star" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
+                        <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="stars">
+                        <ion-icon *ngIf="getValidationError('stars')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                        <span *ngIf="getValidationError('stars')" class="tooltiptext fix">{{ getValidationError('stars') }}</span>
+                      </div>
+  
+                      <div class="col-span-3 relative tooltip">
+                        <label class="block text-xs font-medium text-gray-700">Descripción</label>
+                        <ion-icon name="text" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
+                        <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="description">
+                        <ion-icon *ngIf="getValidationError('description')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                        <span *ngIf="getValidationError('description')" class="tooltiptext email-fix">{{ getValidationError('description') }}</span>
+                      </div>
+  
+                      <div class="col-span-3 relative tooltip">
+                        <label class="block text-xs font-medium text-gray-700">País</label>
+                        <ion-icon name="airplane" class="absolute top-8 left-2.5 text-sm text-gray-600"></ion-icon>
+                        <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="country">
+                        <ion-icon *ngIf="getValidationError('country')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                        <span *ngIf="getValidationError('country')" class="tooltiptext fix">{{ getValidationError('country') }}</span>
+                      </div>
+  
+                      <div class="col-span-3 relative tooltip">
+                        <label class="block text-xs font-medium text-gray-700">Ciudad</label>
+                        <ion-icon name="navigate" class="absolute top-8 left-2.5 text-sm text-gray-600"></ion-icon>
+                        <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="city">
+                        <ion-icon *ngIf="getValidationError('city')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                        <span *ngIf="getValidationError('city')" class="tooltiptext fix">{{ getValidationError('city') }}</span>
+                      </div>
+  
+                      <div class="col-span-6 relative tooltip">
+                        <label class="block text-xs font-medium text-gray-700">Dirección</label>
+                        <ion-icon name="map" class="absolute top-8 left-2.5 text-sm text-gray-600"></ion-icon>
+                        <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="address">
+                        <ion-icon *ngIf="getValidationError('address')" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                        <span *ngIf="getValidationError('address')" class="tooltiptext email-fix">{{ getValidationError('address') }}</span>
+                      </div>
+  
+                    </div>
+                  </div>
+                  <div class="px-3.5 py-2.5 bg-gray-50 text-right sm:px-6">
+                    <button [disabled]="!activateAddHotel" type="submit"
+                      class="mr-4 w-20 h-15 inline-flex justify-center py-1 px-2 border border-transparent shadow-lg text-sm font-normal rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none ring ring-blue-400 ring-opacity-40">
+                      <svg [class.hidden]="!showIcon" class="animate-spin absolute h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span [class.invisible]="showIcon" class="tracking-wide">Guardar</span>
+                    </button>
+                    
+                    <a (click)="showAddModal = !showAddModal; resetAddHotelForm(); showDropdownError = false;"
+                      class="font-normal ring ring-red-400 ring-opacity-40 cursor-pointer inline-flex h-15 w-20 justify-center py-1 px-2 border border-transparent shadow-sm text-sm rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none">
+                      Cerrar
+                    </a>
+                  </div>
+                </div>
+              </form>
+  
+            </div>
+          </div>
+  
+        </div>
+  
+      </div>
     </div>
   </div>
-</section>
 
-<div class="flex justify-center md:mx-12">
-  <div class="relative w-full max-w-3xl px-5 py-4 mt-10 rounded-xl">
-    <span class="absolute inset-y-0 left-5 flex items-center pl-3">
-        <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
-            <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </svg>
-    </span>
+  <div class="modal">
+    <label class="modal-label hidden"></label>
+    <input [checked]="showAddServiceModal" class="modal-cbox hidden" type="checkbox">
+    <div class="modal-div">
+      <div class="modal-content fix-modal pb-6">
+  
+        <div class="top modal-2">
+          <h1>Añadir Servicio</h1>
+          <h2>Aqui puedes añadir un servicio a tu hotel</h2>
+        </div>
+  
+        <label (click)="showAddServiceModal = !showAddServiceModal; resetAddServiceForm()" class="modal-close">
+          <ion-icon name="close"></ion-icon>
+        </label>
+        <input class="modal-cbox " type="checkbox">
+  
+        <div class="middle-modal px-5 pt-6">
+          <div class="grid grid-cols-2 gap-6">
+            <div class="col-span-2">
+  
+              <form class="form" [formGroup]="addServiceForm" (ngSubmit)="addService()">
+                <div class="shadow overflow-hidden sm:rounded-md">
+                  <div class="px-4 py-5 bg-white">
+                    <div class="grid grid-cols-6 gap-y-6 gap-x-2">
+  
+                      <div class="col-span-3 relative tooltip">
+                        <label class="block text-xs font-medium text-gray-700">Nombre</label>
+                        <ion-icon name="bed" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
+                        <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="name">
+                        <ion-icon *ngIf="getValidationError('name', true)" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                        <span *ngIf="getValidationError('name', true)" class="tooltiptext fix">{{ getValidationError('name', true) }}</span>
+                      </div>
+  
+                      <div class="col-span-3 relative tooltip">
+                        <label class="block text-xs font-medium text-gray-700">Precio</label>
+                        <ion-icon name="card-outline" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
+                        <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="price">
+                        <ion-icon *ngIf="getValidationError('price', true)" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                        <span *ngIf="getValidationError('price', true)" class="tooltiptext fix">{{ getValidationError('price', true) }}</span>
+                      </div>
 
-    <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white rounded-xl border border-gray-300 focus:border-transparent ring-indigo-400 ring-opacity-60 focus:outline-none focus:ring" placeholder="Buscar hoteles...">
-</div>
-</div>
+                      <div class="col-span-6 relative tooltip">
+                        <label class="block text-xs font-medium text-gray-700">Descripción</label>
+                        <ion-icon name="text" class="absolute top-8 left-2.5 text-gray-600"></ion-icon>
+                        <input type="text" class="mt-1.5 py-2 pr-3 pl-8 block w-full rounded-md bg-gray-100" formControlName="description">
+                        <ion-icon *ngIf="getValidationError('description', true)" name="close-outline" class="absolute icon-fix right-4 text-red-400"></ion-icon>
+                        <span *ngIf="getValidationError('description', true)" class="tooltiptext email-fix">{{ getValidationError('description', true) }}</span>
+                      </div>
 
-<section class="text-gray-600 body-font mb-10">
-  <div class="container px-5 pb-16 pt-12 mx-auto">
-    <div class="flex flex-wrap -mx-4 -my-8 justify-center">
-
-      <div class="py-8 px-4 lg:w-2/4 2xl:w-1/3 flex-grow relative" *ngFor="let hotel of hotels$ | async">
-        <span class="right-10 top-14 absolute inline-flex h-7 w-10 rounded-full bg-purple-400 opacity-75">9.5</span>
-        <div class="h-full flex items-start bg-gray-50 shadow-sm transition duration-500 ease-in-out hover:shadow-md rounded-2xl py-6 pl-2 pr-8">
-          <div class="w-9 pl-2 flex-shrink-0 flex flex-col text-center leading-none">
-            <span class="text-gray-500 pb-2 mb-2 border-b border-gray-200">
-              <img width="23px" height="23px"*ngFor="let item of [].constructor(hotel.stars)" class="star-icon" src="https://img.icons8.com/material-rounded/24/feca57/star--v1.png"/>
-            </span>
-            <span class="font-medium text-lg text-gray-800 title-font leading-none">{{ hotel.stars }}</span>
+                    </div>
+                  </div>
+                  <div class="px-3.5 py-2.5 bg-gray-50 text-right sm:px-6">
+                    <button [disabled]="!activateAddService" type="submit"
+                      class="mr-4 w-20 h-15 inline-flex justify-center py-1 px-2 border border-transparent shadow-lg text-sm font-normal rounded-md text-white bg-blue-500 hover:bg-blue-600 focus:outline-none ring ring-blue-400 ring-opacity-40">
+                      <svg [class.hidden]="!showIconService" class="animate-spin absolute h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      <span [class.invisible]="showIconService" class="tracking-wide">Guardar</span>
+                    </button>
+                    
+                    <a (click)="showAddServiceModal = !showAddServiceModal; resetAddServiceForm()"
+                      class="font-normal ring ring-red-400 ring-opacity-40 cursor-pointer inline-flex h-15 w-20 justify-center py-1 px-2 border border-transparent shadow-sm text-sm rounded-md text-white bg-red-500 hover:bg-red-600 focus:outline-none">
+                      Cerrar
+                    </a>
+                  </div>
+                </div>
+              </form>
+  
+            </div>
           </div>
-          <div class="flex-grow pl-6">
-            <h2 class="tracking-widest title-country title-font font-medium text-indigo-500 mb-1">{{ hotel.country | titlecase}}, {{ hotel.city | titlecase }}</h2>
-            <h1 class="title-font text-xl font-medium text-gray-900 mb-3">{{ hotel.name | titlecase }}</h1>
-            <p class="leading-relaxed mb-5">{{ hotel.description }}</p>
-            <a class="inline-flex items-center">
-              <button class="btn-social flex wobble bg-blue-500 text-white">
-                <div class="social-container">
-                  {{ hotel.likes }}
-                </div>
-                <div class="img-container">
-                  <ion-icon name="thumbs-up-sharp"></ion-icon>
-                </div>
-              </button>
-
-              <button class="ml-2.5 btn-social wobble btn-dislike flex bg-blue-500 text-white">
-                <div class="social-container">
-                  {{ hotel.dislikes }}
-                </div>
-                <div class="img-container">
-                  <ion-icon name="thumbs-down-sharp"></ion-icon>
-                </div>
-              </button>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  
+  <section class="text-gray-600 body-font main-container">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-wrap -m-4 justify-center">
+        <div class="py-4">
+          <div class="opacity-container mx-5 xl:h-full h-56 pt-9 pb-24 bg-gray-100 bg-opacity-80 lg:h-56 lg:pt-9 px-8 xl:pt-16 xl:pb-24 rounded-xl overflow-hidden text-center relative">
+            <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">HOTEL CONTROL</h2>
+            <h1 class="title-font text-2xl font-medium text-gray-900 mb-3">Lista De Hoteles</h1>
+            <p class="leading-relaxed text-sm mb-3 text-gray-600">Colección de hoteles registrados en nustra aplicación web para llevar el control y la gestión de los mismos.</p>
+            <a class="text-indigo-500 hover:text-indigo-600 px-5 bg-transparent text-sm inline-flex items-center cursor-pointer">Leer Más
+              <svg class="w-4 h-4 ml-0.5 cursor-pointer" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
             </a>
+            <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
+              <span class="text-gray-700 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>1.2K
+              </span>
+              <span class="text-gray-700 inline-flex items-center leading-none text-sm">
+                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                </svg>6
+              </span>
+            </div>
           </div>
         </div>
+  
       </div>
-
-      
     </div>
+  </section>
+
+  <div class="flex md:gap-6 gap-3 px-10 justify-center mt-10">
+    <a class="dashboard-card transform w-full lg:w-2/3 hover:scale-105 transition duration-300 shadow-xl rounded-xl">
+        <div class="p-5">
+            <div class="flex justify-between">
+                <svg class="h-7 w-7 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+                </svg>
+                <div class="bg-indigo-400 rounded-full mr-2 mt-1 h-6 pr-2.5 pl-3 flex justify-items-center text-white font-medium text-sm">
+                    <span class="flex items-center">98%</span>
+                </div>
+            </div>
+            
+            <div class="ml-2 w-full flex-1">
+                <div>
+                    <div *ngIf="hotels as hotelLength" class="mt-3 text-3xl text-white font-bold leading-8">{{ hotelLength.length? hotelLength.length: 0 }}</div>
+  
+                    <div *ngIf="hotels.length !== 1" class="mt-1 text-base font-medium text-gray-50">Hoteles</div>
+                    <div *ngIf="hotels.length === 1" class="mt-1 text-base font-medium text-gray-50">Hotel</div>
+                    <button *ngIf="userLogged?.role === 'app_admin'" (click)="showAddModal = !showAddModal; loadUsersUnassigned()" class="mr-2 float-right btn-add-hotel text-white -mt-10 bg-blue-500 px-6 py-1.5">Añadir Hotel</button>
+                    <button (click)="showAddServiceModal = !showAddServiceModal" *ngIf="userLogged?.role === 'hotel_admin'" class="float-right mr-2 btn-add-service text-white -mt-10 bg-blue-500 px-6 py-1.5">Añadir Servicio</button>
+                  </div>
+            </div>
+        </div>
+    </a>
   </div>
-</section>
+  
+  <div class="flex justify-center md:mx-12">
+    <div class="relative w-full max-w-3xl px-5 py-4 mt-10 rounded-xl">
+      <span class="absolute inset-y-0 left-5 flex items-center pl-3">
+          <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+              <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+      </span>
+  
+      <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white rounded-xl border border-gray-300 focus:border-transparent ring-indigo-400 ring-opacity-60 focus:outline-none focus:ring" placeholder="Buscar hoteles">
+  </div>
+  </div>
+  
+  <section *ngIf="hotels?.length > 0" class="text-gray-600 body-font mb-10">
+    <div class="container px-5 pb-16 pt-12 mx-auto">
+      <div class="flex flex-wrap -mx-4 md:mx-10 sm:mx-0 -my-8 justify-center">
+  
+        <div class="card-container py-8 px-4 lg:w-2/4 xl:w-1/3 relative" *ngFor="let hotel of hotels; trackBy:trackByHotelId">
+  
+          <div class="overlay-container">
+            <img [randomImage] class="image w-full rounded-t-2xl">
+            <div class="middle">
+              <div [class.btn-detail-fix]="userLogged.role !== 'hotel_admin'" class="btn-detail">Ver Detalles</div>
+              <div *ngIf="userLogged.role === 'hotel_admin'" class="btn-detail btn-edit">Editar</div>
+            </div>
+          </div>
+  
+          <span class="right-10 top-14 absolute font-medium inline-flex h-6 w-10 rounded-full bg-gray-700 opacity-75 score text-xs text-white">{{ 'a' | randomScore}}</span>
+          <div class="shadow-container flex items-start bg-gray-50 shadow-sm transition duration-500 ease-in-out hover:shadow-lg rounded-b-2xl py-6 pl-2 pr-8">
+            <div class="w-9 pl-2 flex-shrink-0 flex flex-col text-center leading-none">
+              <span class="text-gray-500 pb-2 mb-2 border-b border-gray-200">
+                <img width="23px" height="23px" *ngFor="let item of [].constructor(hotel.stars)" class="star-icon" src="https://img.icons8.com/material-rounded/24/feca57/star--v1.png"/>
+              </span>
+              <span class="font-medium text-lg text-gray-800 title-font leading-none">{{ hotel.stars }}</span>
+            </div>
+            <div class="flex-grow pl-6">
+              <h2 class="tracking-widest title-country title-font font-medium text-indigo-500 mb-1">{{ hotel.country | titlecase}}, {{ hotel.city | titlecase }}</h2>
+              <h1 class="title-font text-xl font-medium text-gray-900 mb-3">{{ hotel.name | titlecase }}</h1>
+              <p class="leading-relaxed mb-5">{{ hotel.description }}</p>
+              <a class="inline-flex items-center">
+                <button (click)="addLike( hotel._id ); hotel.likes = hotel.likes + 1" class="btn-social flex wobble bg-blue-500 text-white">
+                  <div class="social-container">
+                    {{ hotel.likes }}
+                  </div>
+                  <div class="img-container">
+                    <ion-icon name="thumbs-up-sharp"></ion-icon>
+                  </div>
+                </button>
+  
+                <button (click)="addDislike( hotel._id ); hotel.dislikes = hotel.dislikes + 1" class="ml-2.5 btn-social wobble btn-dislike flex bg-blue-500 text-white">
+                  <div class="social-container">
+                    {{ hotel.dislikes }}
+                  </div>
+                  <div class="img-container">
+                    <ion-icon name="thumbs-down-sharp"></ion-icon>
+                  </div>
+                </button>
+              </a>
+            </div>
+          </div>
+        </div>
+  
+        
+      </div>
+    </div>
+  </section>
+
+  <div *ngIf="hotels?.length === 0 || !hotels" class="mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
+    <img src="../../../assets/images/searchRoom.svg">
+  </div>
+
+</ng-container>
+
+<ngx-spinner [name]="'hotelSpinner'" size="medium" type="ball-clip-rotate" [disableAnimation]="true" bdColor="rgba(255,255,255,1)" [fullScreen]="false" [color]="'#414040'"></ngx-spinner>
