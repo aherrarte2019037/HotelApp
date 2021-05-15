@@ -8,7 +8,7 @@ export interface User {
     role?     : UserRoles;
 }
 
-enum UserRoles {
+export enum UserRoles {
     client      = 'client',
     hotel_admin = 'hotel_admin',
     app_admin   = 'app_admin'

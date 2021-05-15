@@ -207,3 +207,106 @@ hr {
     transform: scale(1.2);
 }
 }
+
+.modal-cbox {
+    display: none;
+}
+  
+.modal-cbox:checked~div {
+    visibility: visible;
+    opacity: 1;
+}
+  
+.modal-label {
+    text-decoration: underline;
+    cursor: pointer;
+}
+  
+.modal-div {
+    z-index: 9;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.75);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+  
+.modal-content {
+    @apply shadow-2xl;
+    width: 470px;
+    background: white;
+    position: absolute;
+    top: 27%;
+    margin-left:50%;
+    left: -235px;
+    border-radius: 10px;
+}
+  
+.modal-close {
+    font-size: 19px;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+    position: absolute;
+    right: 27px;
+    top: 25px;
+    @apply text-white hover:text-gray-700;
+}
+
+.modal-3 .modal-close {
+    @apply text-gray-600 hover:text-red-500;
+}
+  
+.top {
+    border-radius: 9px 9px 0 0;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 80px;
+    @apply p-7 pt-8 -mt-0.5;
+}
+
+.modal-2 {
+    background-image: url("../../../assets/images/bgPattern4.png");
+}
+
+.top-modal-3 {
+    background-image: none;
+}
+  
+.top h1 {
+    color: whitesmoke;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+  
+.top h2 {
+    letter-spacing: 0.3px;
+    color: whitesmoke;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: -2px;
+}
+
+.confirm-credentials-form input {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12.4px;
+    border: none;
+    outline: none;
+    color: gray;
+}
+
+.btn-confirm {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12.4px;
+}
+
+.icon-fix {
+    top: 33px;
+}

@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '../models/user.model';
+import { User, UserRoles } from '../models/user.model';
 import { GlobalService } from './global.service';
 import { tap } from 'rxjs/operators'
 
@@ -19,7 +19,16 @@ export class AuthService {
     return this.htpp.post( `${this.apiUrl}/user/register`, user );
   }
 
-  login( email: string, password: string, remember: boolean ) {
+  registerAdminHotel( user: User, adminAppToken: string ) {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${adminAppToken}` });
+
+    user.role = UserRoles.hotel_admin;
+    return this.htpp.post( `${this.apiUrl}/user/register`, user, { headers } );
+  }
+
+  login( email: string, password: string, remember: boolean, confirmCredentials = false ) {
+    if( confirmCredentials ) return this.htpp.post(`${this.apiUrl}/user/login`, { email, password });
+
     return this.htpp.post(`${this.apiUrl}/user/login`, { email, password }).pipe(
       tap( data => this.setToken( data['jwt'], remember ) )
     )

@@ -13,6 +13,8 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  showCredentialsModal: boolean = false;
+  confirmCredentialsForm: FormGroup;
 
   constructor(
     private router: Router,
@@ -23,6 +25,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.buildForm();
+    this.buildConfirmForm();
   }
 
   buildForm() {
@@ -34,6 +37,16 @@ export class RegisterComponent implements OnInit {
       password  : [ '', [Validators.required, Validators.minLength(5), Validators.maxLength(30), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,30}$/) ]],
       password2 : [ '', [Validators.required] ],
       hotelAdmin: [ false ]
+    },
+    {
+      validators: this.formValidator.passwordMatch('password', 'password2')
+    }); 
+  };
+
+  buildConfirmForm() {
+    this.confirmCredentialsForm = this.formBuilder.group({
+      email: [ '', [Validators.required, Validators.email] ],
+      pass : [ '', [Validators.required, Validators.minLength(5), Validators.maxLength(30), Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,30}$/) ]],
     },
     {
       validators: this.formValidator.passwordMatch('password', 'password2')
@@ -57,46 +70,31 @@ export class RegisterComponent implements OnInit {
     return null;
   }
 
+  getConfirmFormValidationError( input: string ) {
+    const error = this.confirmCredentialsForm.get(input)?.errors;
+    const invalid = this.confirmCredentialsForm.get(input)?.invalid;
+   
+    if( this.confirmCredentialsForm.hasError('passwordDontMatch') && input === 'password2' ) return 'Contraseñas No Coinciden'
+
+    if( invalid && this.confirmCredentialsForm.get(input)?.dirty || invalid && this.confirmCredentialsForm.get(input)?.touched ) {
+      if( 'required' in error! ) return 'Campo Requerido';
+      if( 'minlength' in error! ) return `Mínimo ${error.minlength.requiredLength} caracteres`;
+      if( 'maxlength' in error! ) return `Máximo ${error.maxlength.requiredLength}`;
+      if( 'email' in error! ) return 'Correo Electrónico Inválido';
+      if( 'pattern' in error! ) return 'Contraseña Inválida';
+    }
+
+    return null;
+  }
+
   register() {
     if( this.registerForm.invalid ) {
       this.getSwal('Registro Fallido', 'Datos Inválidos', 'error')
       return this.registerForm.markAllAsTouched()
     };
 
-    // Modal para ingresar credenciales app_admin
     if( this.registerForm.get('hotelAdmin').value ) {
-      Swal.fire({
-        title: 'Submit your Github username',
-        input: 'text',
-        inputAttributes: {
-          autocapitalize: 'off'
-        },
-        showCancelButton: true,
-        confirmButtonText: 'Look up',
-        showLoaderOnConfirm: true,
-        preConfirm: (login) => {
-          return fetch(`//api.github.com/users/${login}`)
-            .then(response => {
-              if (!response.ok) {
-                throw new Error(response.statusText)
-              }
-              return response.json()
-            })
-            .catch(error => {
-              Swal.showValidationMessage(
-                `Request failed: ${error}`
-              )
-            })
-        },
-        allowOutsideClick: () => !Swal.isLoading()
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire({
-            title: `${result.value.login}'s avatar`,
-            imageUrl: result.value.avatar_url
-          })
-        }
-      })
+      return this.showCredentialsModal = true;
     }
 
     const user: User = this.registerForm.value;
@@ -107,6 +105,41 @@ export class RegisterComponent implements OnInit {
 
       error => this.getSwal( 'Registro Fallido', 'Something went wrong', 'error' )
     );
+  }
+
+  registerHotelAdmin( adminAppToken: string ) {
+    this.showCredentialsModal = false;
+    const user: User = this.registerForm.value;
+
+    this.authService.registerAdminHotel( user, adminAppToken ).subscribe(
+      (data: any) => {
+        if( data.registered ) this.getSwal( 'Registro Exitoso', `Administrador de hotel registrado`, 'success', '/login' );
+        if( !data.registered ) this.getSwal( 'Registro Fallido', data.error, 'error' )},
+
+      error => this.getSwal( 'Registro Fallido', 'Something went wrong', 'error' )
+    );
+  }
+
+  confirmCredentials() {
+    if( this.confirmCredentialsForm.invalid ) {
+      this.getSwal('Confirmación Fallida', 'Datos Inválidos', 'error')
+      return this.confirmCredentialsForm.markAllAsTouched()
+    };
+
+    const { email, pass } = this.confirmCredentialsForm.value;
+
+    this.authService.login( email, pass, false ).subscribe(
+      (data:any) => {
+        if( data.logged && data.item.role !== 'app_admin' ) this.getSwal( 'Confirmación Fallida', 'Usuario No Autorizado', 'error' )
+        if( data.logged && data.item.role === 'app_admin' ) {
+          this.registerHotelAdmin( data.jwt )
+        }
+      },
+
+      error => {
+        this.getSwal( 'Confirmación Fallida', error.error.error? error.error.error : 'Datos Incorrectos', 'error' );
+      }
+    )
   }
 
   getSwal( title: string, text: string, type: any, navigate?: string ) {
