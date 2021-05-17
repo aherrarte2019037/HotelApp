@@ -128,7 +128,7 @@ export class RegisterComponent implements OnInit {
 
     const { email, pass } = this.confirmCredentialsForm.value;
 
-    this.authService.login( email, pass, false ).subscribe(
+    this.authService.login( email, pass, false, true ).subscribe(
       (data:any) => {
         if( data.logged && data.item.role !== 'app_admin' ) this.getSwal( 'Confirmación Fallida', 'Usuario No Autorizado', 'error' )
         if( data.logged && data.item.role === 'app_admin' ) {

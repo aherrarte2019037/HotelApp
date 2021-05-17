@@ -1,0 +1,28 @@
+.main-container {
+    background-image: url('../../../assets/images/reservationBg.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.rooms-container {
+  font-family: 'Poppins', sans-serif;
+}
+
+@media only screen and (min-width: 1500px) {
+    .opacity-container {
+      width: 1000px;
+    }
+}
+
+.dashboard-card {
+  background: linear-gradient(to right, #cb3567, #ec6151);
+}
+
+.chart-icon {
+  color: #fca23b;
+}
+
+.reservation-desc {
+  font-size: 15px;
+}

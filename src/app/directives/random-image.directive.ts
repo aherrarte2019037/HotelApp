@@ -6,7 +6,8 @@ import { Directive, ElementRef } from '@angular/core';
 export class RandomImageDirective {
 
   constructor( private element: ElementRef ) {
-    this.element.nativeElement.src = 'https://source.unsplash.com/featured/600x300/?hotel,landscape' + '?q=' + new Date().getTime();
+    const randomNum = Math.random();
+    this.element.nativeElement.src = 'https://source.unsplash.com/featured/600x300/?hotel,landscape' + '?q=' + randomNum;
   }
 
 }

@@ -72,6 +72,7 @@ export class RoomPageComponent implements OnInit {
       this.showContent = true;
       this.spinnerService.hide( 'roomSpinner' )
     }, 1000);
+  
   }
 
   //Room

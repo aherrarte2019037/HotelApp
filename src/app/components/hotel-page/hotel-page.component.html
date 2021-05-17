@@ -207,7 +207,7 @@
         <div class="py-4">
           <div class="opacity-container mx-5 xl:h-full h-56 pt-9 pb-24 bg-gray-100 bg-opacity-80 lg:h-56 lg:pt-9 px-8 xl:pt-16 xl:pb-24 rounded-xl overflow-hidden text-center relative">
             <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">HOTEL CONTROL</h2>
-            <h1 class="title-font text-2xl font-medium text-gray-900 mb-3">Lista De Hoteles</h1>
+            <h1 class="title-font text-2xl font-medium text-gray-900 mb-3">Hoteles</h1>
             <p class="leading-relaxed text-sm mb-3 text-gray-600">Colección de hoteles registrados en nustra aplicación web para llevar el control y la gestión de los mismos.</p>
             <a class="text-indigo-500 hover:text-indigo-600 px-5 bg-transparent text-sm inline-flex items-center cursor-pointer">Leer Más
               <svg class="w-4 h-4 ml-0.5 cursor-pointer" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -269,11 +269,11 @@
           </svg>
       </span>
   
-      <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white rounded-xl border border-gray-300 focus:border-transparent ring-indigo-400 ring-opacity-60 focus:outline-none focus:ring" placeholder="Buscar hoteles">
+      <input [(ngModel)]="searchTerm" type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white rounded-xl border border-gray-300 focus:border-transparent ring-indigo-400 ring-opacity-60 focus:outline-none focus:ring" placeholder="Buscar hoteles">
   </div>
   </div>
   
-  <section *ngIf="hotels?.length > 0" class="text-gray-600 body-font mb-10">
+  <section *ngIf="getHotelSearch()?.length > 0" class="text-gray-600 body-font mb-10">
     <div class="container px-5 pb-16 pt-12 mx-auto">
       <div class="flex flex-wrap -mx-4 md:mx-10 sm:mx-0 -my-8 justify-center">
   
@@ -327,7 +327,7 @@
     </div>
   </section>
 
-  <div *ngIf="hotels?.length === 0 || !hotels" class="mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
+  <div *ngIf="getHotelSearch()?.length === 0" class="mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
     <img src="../../../assets/images/searchRoom.svg">
   </div>
 

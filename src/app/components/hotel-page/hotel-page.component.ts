@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { shareReplay, switchMap } from 'rxjs/operators';
 import { Hotel } from 'src/app/models/hotel.model';
 import { User } from 'src/app/models/user.model';
+import { SearchFilterPipe } from 'src/app/pipes/search-filter.pipe';
 import { HotelService } from 'src/app/services/hotel.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -15,6 +16,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./hotel-page.component.css']
 })
 export class HotelPageComponent implements OnInit {
+  searchTerm: string;
   showContent: boolean = false;
   hotels: Hotel[] = [];
   addHotelForm: FormGroup = this.buildAddHotelForm();
@@ -37,7 +39,8 @@ export class HotelPageComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private snotifyService: SnotifyService,
-    private spinnerService: NgxSpinnerService
+    private spinnerService: NgxSpinnerService,
+    private searchFilter: SearchFilterPipe
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +57,10 @@ export class HotelPageComponent implements OnInit {
   }
 
   //Hotel
+
+  getHotelSearch() {
+    return this.searchFilter.transform( this.hotels, this.searchTerm )
+  }
 
   addLike( id: string ) {
     this.hotelService.addLike( id ).subscribe()

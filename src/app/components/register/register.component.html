@@ -86,14 +86,14 @@
     
                 <div class="form-div w-1/2 inline-flex justify-between tooltip">
                     <input class="form-control fix-control form-middle mt-5 mr-1" type="text" placeholder="Nombre" formControlName="firstname">
-                    <span class="icon-span left-3 top-7"><ion-icon name="card"></ion-icon></span>
+                    <span class="icon-span left-3 top-7"><ion-icon name="text"></ion-icon></span>
                     <ion-icon *ngIf="getValidationError('firstname')" name="close-outline" class="absolute top-8 right-5 text-red-400"></ion-icon>
                     <span *ngIf="getValidationError('firstname')" class="tooltiptext">{{ getValidationError('firstname') }}</span>
                 </div>
     
                 <div class="form-div w-1/2 inline-flex justify-between tooltip">
                     <input class="form-control lastname-control form-middle mt-5 ml-1" type="text" placeholder="Apellido" formControlName="lastname">
-                    <span class="icon-span left-3.5 top-7"><ion-icon name="card"></ion-icon></span>
+                    <span class="icon-span left-3.5 top-7"><ion-icon name="text"></ion-icon></span>
                     <ion-icon *ngIf="getValidationError('lastname')" name="close-outline" class="absolute top-8 right-5 text-red-400"></ion-icon>
                     <span *ngIf="getValidationError('lastname')" class="tooltiptext">{{ getValidationError('lastname') }}</span>
                 </div>

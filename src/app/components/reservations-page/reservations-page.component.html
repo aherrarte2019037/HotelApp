@@ -1,0 +1,121 @@
+<ng-container *ngIf="showContent">
+
+    <section class="text-gray-600 body-font main-container">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -m-4 justify-center">
+            <div class="py-4">
+              <div class="opacity-container mx-5 xl:h-full h-56 pt-9 pb-24 bg-gray-100 bg-opacity-80 lg:h-56 lg:pt-9 px-8 xl:pt-16 xl:pb-24 rounded-xl overflow-hidden text-center relative">
+                <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">HOTEL CONTROL</h2>
+                <h1 class="title-font text-2xl font-medium text-gray-900 mb-3">Reservaciones</h1>
+                <p class="leading-relaxed text-sm mb-3 text-gray-600">Colección de reservaciones en las habitaciones para llevar el control y gestión de las mismas.</p>
+                <a class="text-indigo-500 hover:text-indigo-600 px-5 bg-transparent text-sm inline-flex items-center cursor-pointer">Leer Más
+                  <svg class="w-4 h-4 ml-0.5 cursor-pointer" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+                <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
+                  <span class="text-gray-700 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                    <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>2.9K
+                  </span>
+                  <span class="text-gray-700 inline-flex items-center leading-none text-sm">
+                    <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                      <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                    </svg>352
+                  </span>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+    </section>
+
+    <div class="flex md:gap-6 gap-3 mt-10 px-10 justify-center">
+        <a class="dashboard-card transform w-full lg:w-2/3 hover:scale-105 transition duration-300 shadow-xl rounded-xl">
+            <div class="p-5">
+                <div class="flex justify-between">
+                    <svg class="h-7 w-7 chart-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+                    </svg>
+                    <div class="bg-yellow-500 rounded-full mr-2 mt-1 h-6 pr-2.5 pl-3 flex justify-items-center text-white font-medium text-sm">
+                        <span class="flex items-center">75%</span>
+                    </div>
+                </div>
+                
+                <div class="ml-2 w-full flex-1">
+                    <div>
+                        <div *ngIf="reservations as reservationsLength" class="mt-3 text-3xl text-white font-bold leading-8">{{ reservationsLength.length? reservationsLength.length: 0 }}</div>
+      
+                        <div *ngIf="reservations.length !== 1" class="mt-1 text-base font-medium text-gray-50">Reservaciones</div>
+                        <div *ngIf="reservations.length === 1" class="mt-1 text-base font-medium text-gray-50">Reservaciones</div>
+<!--                         <button *ngIf="userLogged?.role === 'app_admin'" (click)="showAddModal = !showAddModal" class="float-right btn-add-room text-white -mt-10 mr-3 bg-indigo-500 px-7 py-1.5">Añadir</button> -->
+                      </div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="flex justify-center md:mx-12">
+        <div class="relative w-full max-w-3xl px-5 py-4 mt-10 rounded-xl">
+          <span class="absolute inset-y-0 left-5 flex items-center pl-3">
+              <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                  <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+          </span>
+      
+          <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white rounded-xl border border-gray-300 focus:border-transparent ring-indigo-400 ring-opacity-60 focus:outline-none focus:ring" placeholder="Buscar reservaciones">
+      </div>
+    </div>
+
+    <section *ngIf="reservations?.length > 0" class="text-gray-600">
+      <div class="rooms-container px-6 py-24 -mt-9 mx-auto flex flex-wrap justify-center gap-x-10">
+
+        <div *ngFor="let reservation of reservations">
+          <div class="max-w-sm flex flex-col mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 mb-10">
+            <img [randomImage] class="object-cover object-center w-full h-56">
+            
+            <div class="flex items-center text-white justify-between px-6 py-3 bg-gray-900">
+              
+              <h1 class="mr-1.5 text-sm font-normal">{{ reservation.pricePerHour }}Q x hora <ion-icon name="time" class="text-white text-base -mb-1"></ion-icon></h1>
+              
+              <h1 class="text-sm text-green-500">{{ reservation.reservation.cancelled? 'Cancelada': 'Disponible' }}</h1>
+            </div>
+
+            <div class="px-6 py-4">
+                <h1 class="text-base font-semibold text-gray-800">{{ reservation.hotel }}</h1>
+                <p class="py-1 reservation-desc text-gray-700 dark:text-gray-400">El código de la habitación reservada es {{ reservation.room }}</p>
+                
+                <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                    <h1 class="px-2 text-sm">{{ reservation.reservation.entryDateTime | date:'medium' }}</h1>
+                </div>
+
+                <div class="flex items-center mt-1.5 text-gray-700 dark:text-gray-200">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                    <h1 class="px-2 text-sm">{{ reservation.reservation.exitDateTime | date:'medium' }}</h1>
+                </div>
+
+                <div class="flex items-center mt-1.5 text-gray-700 dark:text-gray-200 mb-2">   
+                    <ion-icon name="location-outline"></ion-icon>
+                    <h1 class="px-2 text-sm">{{ reservation.country }}, {{ reservation.address }}</h1>
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    
+    <div *ngIf="reservations?.length === 0 || !reservations" class="animate fadeIn mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
+      <img src="../../../assets/images/searchRoom.svg" alt="" class="searchRoom">
+      <h1 class="flex justify-center mt-6 text-xl text-gray-800">No se encontraron reservaciones</h1>
+  </div>
+
+
+</ng-container>
+
+<ngx-spinner [name]="'reservationSpinner'" size="medium" type="ball-clip-rotate" [disableAnimation]="true" bdColor="rgba(255,255,255,1)" [fullScreen]="false" [color]="'#414040'"></ngx-spinner>
