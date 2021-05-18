@@ -26,3 +26,171 @@
 .reservation-desc {
   font-size: 15px;
 }
+
+.btn-status {
+  box-shadow: 0px 7px 10px -1px #c0c0c0;
+  @apply py-2 w-24 float-right text-xs transform transition duration-300 hover:scale-105 text-white rounded-full;
+}
+
+.detail-title {
+  @apply text-gray-600;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+}
+
+.overlay-container {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  @apply rounded-t-2xl;
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.671);
+  width: 100%;
+  height: 100%;
+}
+
+.overlay-container:hover .image {
+  opacity: 0.8;
+}
+
+.overlay-container:hover .middle {
+  opacity: 1;
+}
+
+.btn-detail {
+  width: 150px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 59%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: transparent;
+  border-radius: 50px;
+  border: 2px solid white;
+  color: white;
+  font-size: 12px;
+  padding: 5px 28px;
+  @apply tracking-wider hover:bg-white hover:text-black;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease-in;
+}
+
+.btn-fix {
+  bottom: 37%
+}
+
+.btn-detail:hover {
+  font-weight: 600;
+}
+
+.modal-cbox {
+  display: none;
+}
+
+.modal-cbox:checked~div {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-label {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal-div {
+  z-index: 9;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.modal-content {
+  @apply shadow-2xl;
+  width: 400px;
+  background: white;
+  position: absolute;
+  margin-left: 50%;
+  top: 30%;
+  left: -80px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  .modal-content {
+    margin-left: 50%;
+    left: -200px;
+  }
+}
+
+.modal-close {
+  font-size: 19px;
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
+  padding: 3px;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  @apply text-white hover:text-gray-600;
+}
+
+.modal-3 .modal-close {
+  @apply text-white hover:text-gray-700;
+}
+
+.top {
+  border-radius: 9px 9px 0 0;
+  background-image: url("../../../assets/images/bgPattern3.png");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 80px;
+  @apply p-7 pt-8 -mt-0.5;
+}
+
+.modal-2 {
+  background-image: url("../../../assets/images/bgPattern4.png");
+}
+
+.top-modal-3 {
+  background-image: none;
+}
+
+.top h1 {
+  color: whitesmoke;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.top h2 {
+  letter-spacing: 0.3px;
+  color: whitesmoke;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: -2px;
+}

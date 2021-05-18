@@ -233,4 +233,9 @@ export class RoomPageComponent implements OnInit {
     this.hotelService.getOne( hotel ).subscribe( (data:any) => this.servicesData = data.services );
   }
 
+  dateFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    return day !== 0 && day !== 6;
+  }
+
 }

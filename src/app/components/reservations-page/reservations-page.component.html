@@ -1,5 +1,45 @@
 <ng-container *ngIf="showContent">
 
+  <div class="modal modal-3">
+    <label class="modal-label hidden"></label>
+    <input [checked]="showConfirmDeleteModal" class="modal-cbox hidden" type="checkbox">
+
+    <div class="modal-div">
+      <div class="modal-content pb-6">
+  
+        <label (click)="showConfirmDeleteModal = !showConfirmDeleteModal" class="modal-close">
+          <ion-icon name="close"></ion-icon>
+        </label>
+        <input class="modal-cbox " type="checkbox">
+  
+        <div class="middle-modal">
+
+          <div >
+            <div class="h-40 bg-blue-500 pt-7 flex justify-center items-center rounded-t-lg">
+              <div class="h-24 w-24 bg-white rounded-full flex justify-center items-center">
+                <i class="material-icons text-blue-500">done</i>
+              </div>
+            </div>
+                <svg viewBox="0 0 1440 320" class="fill-current text-blue-500">
+                  <path fill-opacity="1" d="M0,64L80,85.3C160,107,320,149,480,154.7C640,160,800,128,960,112C1120,96,1280,96,1360,96L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+                </svg>
+                <div class="p-8 -mt-12">
+                  <p class="font-semibold text-center text-3xl text-gray-700">¿Estas seguro?</p>
+                  <p class="text-gray-600 text-md text-center mt-3">
+                    No podrás recuperar tu reservación si la eliminas.
+                  </p>
+                  <div class="flex justify-center mt-6">
+                    <button (click)="deleteReservation()" class="bg-blue-500 hover:bg-blue-700 text-sm tracking-wide text-white shadow-2xl w-24 px-1 py-2 font-normal rounded-full mr-2">Aceptar</button>
+                    <button (click)="showConfirmDeleteModal = false" class="bg-red-500 hover:bg-red-700 text-sm text-white tracking-wide shadow-2xl w-24 px-1 py-2 font-normal rounded-full ml-2">Cancelar</button>
+                  </div>
+                </div>
+              </div>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
     <section class="text-gray-600 body-font main-container">
         <div class="container px-5 py-24 mx-auto">
           <div class="flex flex-wrap -m-4 justify-center">
@@ -74,36 +114,47 @@
     <section *ngIf="reservations?.length > 0" class="text-gray-600">
       <div class="rooms-container px-6 py-24 -mt-9 mx-auto flex flex-wrap justify-center gap-x-10">
 
-        <div *ngFor="let reservation of reservations">
-          <div class="max-w-sm flex flex-col mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 mb-10">
-            <img [randomImage] class="object-cover object-center w-full h-56">
-            
+        <div *ngFor="let reservation of reservations; trackBy:trackByIndexReservation">
+          <div class="max-w-sm flex flex-col mx-auto overflow-hidden bg-white rounded-xl shadow-lg dark:bg-gray-800 mb-10">
+
+            <div class="overlay-container">
+              <img [randomImage] class="image rounded-t-2xl object-cover object-center w-full h-56">
+              <div class="middle">
+                <div (click)="editReservationStatus( reservation.roomId, reservation.reservation._id, true )" *ngIf="!reservation.reservation.cancelled" class="btn-detail">Cancelar</div>
+                <div (click)="editReservationStatus( reservation.roomId, reservation.reservation._id, false )" *ngIf="reservation.reservation.cancelled" class="btn-detail">Reservar</div>
+                <div (click)="showConfirmDeleteModal = true; setDeleteData( reservation.roomId, reservation.reservation._id )" class="btn-detail btn-fix">Eliminar</div>
+              </div>
+            </div>
+
             <div class="flex items-center text-white justify-between px-6 py-3 bg-gray-900">
               
               <h1 class="mr-1.5 text-sm font-normal">{{ reservation.pricePerHour }}Q x hora <ion-icon name="time" class="text-white text-base -mb-1"></ion-icon></h1>
               
-              <h1 class="text-sm text-green-500">{{ reservation.reservation.cancelled? 'Cancelada': 'Disponible' }}</h1>
+              <h1 *ngIf="reservation.reservation.cancelled" class="text-sm text-red-500 animate__animated animate__fadeInUp">Cancelada</h1>
+              <h1 *ngIf="!reservation.reservation.cancelled" class="text-sm text-green-500 animate__animated animate__fadeInDown">Disponible</h1>
+
             </div>
 
             <div class="px-6 py-4">
                 <h1 class="text-base font-semibold text-gray-800">{{ reservation.hotel }}</h1>
                 <p class="py-1 reservation-desc text-gray-700 dark:text-gray-400">El código de la habitación reservada es {{ reservation.room }}</p>
                 
-                <div class="flex items-center mt-4 text-gray-700 dark:text-gray-200">
+                <div class="flex items-center mt-1 text-gray-700 dark:text-gray-200">
                     <ion-icon name="arrow-forward-outline"></ion-icon>
-                    <h1 class="px-2 text-sm">{{ reservation.reservation.entryDateTime | date:'medium' }}</h1>
+                    <h1 class="px-2 detail-title">{{ reservation.reservation.entryDateTime | date:'medium' }}</h1>
                 </div>
 
                 <div class="flex items-center mt-1.5 text-gray-700 dark:text-gray-200">
                     <ion-icon name="arrow-back-outline"></ion-icon>
-                    <h1 class="px-2 text-sm">{{ reservation.reservation.exitDateTime | date:'medium' }}</h1>
+                    <h1 class="px-2 detail-title">{{ reservation.reservation.exitDateTime | date:'medium' }}</h1>
                 </div>
 
                 <div class="flex items-center mt-1.5 text-gray-700 dark:text-gray-200 mb-2">   
                     <ion-icon name="location-outline"></ion-icon>
-                    <h1 class="px-2 text-sm">{{ reservation.country }}, {{ reservation.address }}</h1>
+                    <h1 class="px-2 detail-title">{{ reservation.country }}, {{ reservation.address }}</h1>
                 </div>
-            </div>
+
+              </div>
           </div>
         </div>
 
@@ -113,7 +164,7 @@
     <div *ngIf="reservations?.length === 0 || !reservations" class="animate fadeIn mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
       <img src="../../../assets/images/searchRoom.svg" alt="" class="searchRoom">
       <h1 class="flex justify-center mt-6 text-xl text-gray-800">No se encontraron reservaciones</h1>
-  </div>
+   </div>
 
 
 </ng-container>

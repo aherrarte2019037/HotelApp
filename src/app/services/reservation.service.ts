@@ -18,4 +18,16 @@ export class ReservationService {
     return this.http.get( `${this.apiUrl}/hotel/reservation/user`, {  headers} );
   }
 
+  editReservationStatus( cancelled: boolean, room: string, reservation: string ) {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+
+    return this.http.put( `${this.apiUrl}/hotel/room/${room}/reservation/${reservation}/status`, { cancelled }, {  headers} );
+  }
+
+  deleteReservation( room: string, reservation: string ) {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+
+    return this.http.delete( `${this.apiUrl}/hotel/room/${room}/reservation/${reservation}`, { headers } );
+  }
+
 }

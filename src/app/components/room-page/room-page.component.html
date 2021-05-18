@@ -119,23 +119,19 @@
 
                         <label class="absolute top-32 -mt-1.5 text-xs font-medium text-gray-700">Fecha / Hora De Entrada</label>
                           <mat-form-field appearance="fill" class="col-span-3 mt-5 rounded-md">
+                            
                             <input formControlName="entryDateTime" [min]="minDate" matInput [ngxMatDatetimePicker]="entryPicker" placeholder="Entrada">
-
                             <mat-datepicker-toggle matSuffix [for]="entryPicker"></mat-datepicker-toggle>
-
-                            <ngx-mat-datetime-picker disabled="false" [enableMeridian]="true" #entryPicker [showSpinners]="true" [showSeconds]="false">
-                            </ngx-mat-datetime-picker>
+                            <ngx-mat-datetime-picker disabled="false" [enableMeridian]="true" #entryPicker [showSpinners]="true" [showSeconds]="false"></ngx-mat-datetime-picker>
 
                           </mat-form-field>
 
                           <label class="absolute left-60 ml-1 top-32 -mt-1.5 text-xs font-medium text-gray-700">Fecha / Hora De Salida</label>
                           <mat-form-field appearance="fill" class="col-span-3 mt-5 rounded-md">
+                            
                             <input formControlName="exitDateTime" [min]="exitMinDate" matInput [ngxMatDatetimePicker]="exitPicker" placeholder="Salida">
-
                             <mat-datepicker-toggle matSuffix [for]="exitPicker"></mat-datepicker-toggle>
-
-                            <ngx-mat-datetime-picker [color]="'warn'" [enableMeridian]="true" disabled="false" #exitPicker [showSpinners]="true" [showSeconds]="false">
-                            </ngx-mat-datetime-picker>
+                            <ngx-mat-datetime-picker [enableMeridian]="true" disabled="false" #exitPicker [showSpinners]="true" [showSeconds]="false"></ngx-mat-datetime-picker>
 
                           </mat-form-field>
 
@@ -215,7 +211,7 @@
     
         </div>
       </div>
-  </div>
+    </div>
 
     <section class="text-gray-600 body-font main-container">
         <div class="container px-5 py-24 mx-auto">
