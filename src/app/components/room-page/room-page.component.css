@@ -121,6 +121,11 @@
     @apply text-white hover:text-gray-600;
 }
 
+.modal-close-fix {
+    right: 18px;
+    top: 12px;
+}
+
 .modal-3 .modal-close {
     @apply text-gray-600 hover:text-red-500;
 }
@@ -132,7 +137,7 @@
     background-size: 100%;
     width: 100%;
     height: 80px;
-    @apply p-7 pt-8 -mt-0.5;
+    @apply p-7 pt-5 -mt-0.5;
 }
 
 .modal-2 {

@@ -1,4 +1,4 @@
-<ng-container *ngIf="showContent">
+<ng-container [style.opacity]="showContent">
 
     <div class="modal">
         <label class="modal-label hidden"></label>
@@ -174,7 +174,7 @@
           <div class="top top-modal-3">            
           </div>
     
-          <label (click)="showServicesModal = !showServicesModal" class="modal-close">
+          <label (click)="showServicesModal = !showServicesModal" class="modal-close modal-close-fix">
             <ion-icon name="close"></ion-icon>
           </label>
           <input class="modal-cbox " type="checkbox">
@@ -203,7 +203,9 @@
                 <h1 class="mb-7 title-no-service font-medium text-center mx-auto tracking-wide text-gray-500">No se encontraron servicios</h1>
               </div>
               
-              <button (click)="showServicesModal = !showServicesModal" class="ml-2 btn-close-service font-normal tracking-wide ring-2 ring-red-300 bg-red-500 hover:opacity-90 px-5 float-right py-1 rounded-full text-white">Cerrar</button>
+              <div class="flex justify-center">
+                <button (click)="showServicesModal = !showServicesModal" class="ml-2 -mt-1 btn-close-service font-normal hover:scale-105 transform duration-200 tracking-wide bg-red-500 hover:opacity-90 px-6 float-right py-1.5 rounded-full text-white">Cerrar</button>
+              </div>
 
             </div>
     

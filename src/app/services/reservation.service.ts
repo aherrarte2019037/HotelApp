@@ -15,7 +15,7 @@ export class ReservationService {
   getReservationsByUser() {
     const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
 
-    return this.http.get( `${this.apiUrl}/hotel/reservation/user`, {  headers} );
+    return this.http.get( `${this.apiUrl}/hotel/reservation/user`, { headers } );
   }
 
   editReservationStatus( cancelled: boolean, room: string, reservation: string ) {
@@ -28,6 +28,18 @@ export class ReservationService {
     const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
 
     return this.http.delete( `${this.apiUrl}/hotel/room/${room}/reservation/${reservation}`, { headers } );
+  }
+
+  addServiceToReservation( reservation: string, service: string, quantity: string ) {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+
+    return this.http.post( `${this.apiUrl}/hotel/reservation/${reservation}/service`, { service, quantity }, { headers } );
+  }
+
+  getServicesByReservation( room: string, reservation: string ) {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+
+    return this.http.get( `${this.apiUrl}/user/room/${room}/service/reservation/${reservation}`, { headers } )
   }
 
 }

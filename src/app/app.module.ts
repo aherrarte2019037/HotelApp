@@ -25,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { ReservationsPageComponent } from './components/reservations-page/reservations-page.component';
+import { ServiceQuantityPipe } from './pipes/service-quantity.pipe';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ReservationsPageComponent } from './components/reservations-page/reserv
     SearchFilterPipe,
     TruncateTextPipe,
     ReservationsPageComponent,
+    ServiceQuantityPipe,
   ],
   imports: [
     NgxMatDatetimePickerModule,

@@ -139,9 +139,25 @@
   border-radius: 10px;
 }
 
+.modal-content-2 {
+  @apply shadow-2xl;
+  width: 480px;
+  background: white;
+  position: absolute;
+  top: calc(50% + 34px);
+  transform: translatey(-50%);
+  left: calc(50% - 110px);
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 700px) {
   .modal-content {
     margin-left: 50%;
+    left: -200px;
+  }
+
+  .modal-content-2 {
+    margin-left: 43%;
     left: -200px;
   }
 }
@@ -155,7 +171,11 @@
   position: absolute;
   right: 15px;
   top: 10px;
-  @apply text-white hover:text-gray-600;
+  @apply hover:text-white text-gray-600;
+}
+
+.modal-close-fix {
+  @apply hover:text-red-500;
 }
 
 .modal-3 .modal-close {
@@ -193,4 +213,54 @@
   font-size: 12px;
   font-weight: 400;
   margin-top: -2px;
+}
+
+.btn-overlay {
+  transition: box-shadow 0.4s ease;
+  @apply w-20 py-2 mx-1 font-semibold rounded-lg -mt-2 tracking-wide;
+}
+
+.btn-hover:hover {
+  @apply ring ring-blue-200;
+}
+
+.price-span {
+  font-size: 11px;
+  font-family: 'Poppins', sans-serif;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+.input-fix {
+  top: -1.3px;
+}
+
+.range-input {
+  @apply focus:outline-none text-center w-full bg-gray-200 font-semibold hover:text-black focus:text-black flex items-center text-gray-700  outline-none;
+}
+
+.text-name {
+  @apply tracking-wide;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+}
+
+.text-description {
+  @apply tracking-wide;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px;
+}
+
+.span-add {
+  
 }

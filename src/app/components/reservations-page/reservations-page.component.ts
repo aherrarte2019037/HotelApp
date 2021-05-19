@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { SnotifyPosition, SnotifyService } from 'ng-snotify';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { BehaviorSubject } from 'rxjs';
+import { User } from 'src/app/models/user.model';
+import { HotelService } from 'src/app/services/hotel.service';
 import { ReservationService } from 'src/app/services/reservation.service';
-import Swal from 'sweetalert2';
-
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-reservations-page',
@@ -10,23 +13,36 @@ import Swal from 'sweetalert2';
   styleUrls: ['./reservations-page.component.css']
 })
 export class ReservationsPageComponent implements OnInit {
-  showContent: boolean = false;
+  showContent: number = 0;
   reservations: any = [];
   showConfirmDeleteModal = false;
   deleteData: any = {};
+  userLogged: User;
+  showServicesModal: boolean = false;
+  servicesData: any = [];
+  reservationSelected: any;
+  showIcon: boolean = false;
+  servicesByReservation = new BehaviorSubject<any>([]);
 
   constructor(
     private spinnerService: NgxSpinnerService,
-    private reservationService: ReservationService
+    private hotelService: HotelService,
+    private reservationService: ReservationService,
+    private userService: UserService,
+    private snotifyService: SnotifyService
   )
   {}
 
   ngOnInit(): void {
+    this.userService.getUserAuthenticated().subscribe( (data:any) => {
+      if( data.role === 'client' ) this.reservationService.getReservationsByUser().subscribe(  data => this.reservations = data );
+    });
+
     this.spinnerService.show( 'reservationSpinner' );
-    this.reservationService.getReservationsByUser().subscribe(  data => this.reservations = data );
+    
 
     setTimeout(() => {
-      this.showContent = true;
+      this.showContent = 1;
       this.spinnerService.hide( 'reservationSpinner' )
     }, 1000);
   }
@@ -47,6 +63,36 @@ export class ReservationsPageComponent implements OnInit {
   deleteReservation() {
     this.reservationService.deleteReservation( this.deleteData.room, this.deleteData.reservation ).subscribe( data => this.showConfirmDeleteModal = false );
     this.reservationService.getReservationsByUser().subscribe(  data => this.reservations = data );
+  }
+
+  setServicesData( hotel: any ) {
+    this.reservationSelected = hotel;
+    this.reservationService.getServicesByReservation( hotel.roomId, hotel.reservation._id ).subscribe( (data:any) => this.servicesByReservation = data )
+    this.hotelService.getOne( hotel.hotelId ).subscribe( (data:any) => this.servicesData = data.services );
+  }
+
+  setQuantityInputValue( input: any, service: string, add: boolean ) {
+    if( Number(input.value) === 0 && !add ) return;
+
+    if( add ) {
+      input.value = Number(input.value) + 1;
+      this.reservationService.addServiceToReservation( this.reservationSelected.reservation._id, service, input.value ).subscribe();
+      return;
+
+    } else {
+      input.value = Number(input.value) - 1;
+      this.reservationService.addServiceToReservation( this.reservationSelected.reservation._id, service, input.value ).subscribe();
+      return;
+    }
+  }
+
+  updateServices() {
+    this.showIcon = true;
+
+    setTimeout(() => {
+      this.snotifyService.success('Datos guardados', { showProgressBar: false, icon: '../../../assets/images/checkCircle.svg', iconClass: 'snotifyIcon', timeout: 2000, position: SnotifyPosition.rightTop })
+      this.showIcon = false
+    }, 500);
   }
 
 }

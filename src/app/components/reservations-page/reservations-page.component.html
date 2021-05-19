@@ -1,4 +1,77 @@
-<ng-container *ngIf="showContent">
+<ng-container [style.opacity]="showContent">
+
+  <div class="modal">
+    <label class="modal-label hidden"></label>
+    <input [checked]="showServicesModal" class="modal-cbox hidden" type="checkbox">
+
+    <div class="modal-div">
+      <div class="modal-content-2 pb-6">
+  
+        <div class="top top-modal-3">            
+        </div>
+  
+        <label (click)="showServicesModal = !showServicesModal" class="modal-close modal-close-fix">
+          <ion-icon name="close"></ion-icon>
+        </label>
+        <input class="modal-cbox " type="checkbox">
+  
+        <div class="middle-modal px-7 pt-6">
+
+          <div >
+            <p [style.visibility]="servicesData.length === 0? 'hidden':'visible'" class="text-center -mt-16 text-gray-600 font-bold text-2xl tracking-wide mb-3">Servicios</p>
+            
+            <div *ngFor="let service of servicesData; let last = last" [style.marginBottom.px]=" last? 30:-8" class="relative bg-gray-200 px-6 mt-5 py-2 rounded-lg flex justify-between items-center">
+              <div class="flex">
+
+                <button class="mt-0.5 left-3.5 shadow-md bg-blue-500 hover:opacity-90 price-span tracking-wider font-medium text-white rounded-full h-9 w-9 absolute">
+                  {{ service.price }}Q
+                </button>
+
+                <div class="ml-9">
+                  <h1 class="text-sm text-name font-medium text-gray-700 -mb-1.5 leading-0 mt-0.5">{{ service.name }}</h1>
+                  <p class=" text-gray-500 text-description leading-5">{{ service.description | truncateText:40 }}</p>
+
+                  <div class="flex flex-row h-8 right-2 w-20 top-1.5 z-50 absolute rounded-lg  bg-transparent mt-1">
+                    <button (click)="setQuantityInputValue(quantityInput, service._id, false)" class="relative bg-gray-200 transform duration-500 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                      <span class="absolute -top-0.5 left-1.5 text-2xl font-thin">−</span>
+                    </button>
+
+                    <input disabled [value]="(reservationSelected | serviceQuantity:service) | async" #quantityInput type="number" class="range-input">
+                    
+                    <button (click)="setQuantityInputValue(quantityInput, service._id, true)" class="relative g-gray-200 text-gray-600 transform duration-500 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r-md cursor-pointer">
+                      <span class="input-fix -mt-0.5 left-1.5 span-add absolute text-2xl font-thin">+</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            
+            </div>
+            
+            <div class="-mt-20 mb-10" *ngIf="servicesData.length === 0">
+              <img class="mx-auto mt-16 pt-1.5 mb-2" src="../../../assets/images/search.svg" width="80px">
+              <h1 class="mb-7 title-no-service font-medium text-center mx-auto tracking-wide text-gray-500">No se encontraron servicios</h1>
+            </div>
+            
+            <div class="flex justify-end">
+              <button (click)="showServicesModal = !showServicesModal" class="hover:bg-red-300 text-sm hover:text-red-500 text-red-500 btn-overlay">Cerrar</button>
+              
+              <button (click)="updateServices()" class="bg-blue-300 hover:bg-blue-500 hover:bg-opacity-75 btn-hover text-sm text-blue-600 btn-overlay hover:text-white">
+                <svg [class.hidden]="!showIcon" class="ml-7 animate-spin absolute h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              <span [class.invisible]="showIcon" class="tracking-wide">Guardar</span>
+              </button>
+
+            </div>
+
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
 
   <div class="modal modal-3">
     <label class="modal-label hidden"></label>
@@ -29,8 +102,8 @@
                     No podrás recuperar tu reservación si la eliminas.
                   </p>
                   <div class="flex justify-center mt-6">
-                    <button (click)="deleteReservation()" class="bg-blue-500 hover:bg-blue-700 text-sm tracking-wide text-white shadow-2xl w-24 px-1 py-2 font-normal rounded-full mr-2">Aceptar</button>
-                    <button (click)="showConfirmDeleteModal = false" class="bg-red-500 hover:bg-red-700 text-sm text-white tracking-wide shadow-2xl w-24 px-1 py-2 font-normal rounded-full ml-2">Cancelar</button>
+                    <button (click)="deleteReservation()" class="bg-blue-300 hover:bg-blue-500 text-sm mr-1.5 text-blue-600 btn-overlay">Aceptar</button>
+                    <button (click)="showConfirmDeleteModal = false" class="bg-red-300 hover:bg-red-500 ml-1.5 text-sm text-red-500 btn-overlay">Cancelar</button>
                   </div>
                 </div>
               </div>
@@ -92,8 +165,7 @@
       
                         <div *ngIf="reservations.length !== 1" class="mt-1 text-base font-medium text-gray-50">Reservaciones</div>
                         <div *ngIf="reservations.length === 1" class="mt-1 text-base font-medium text-gray-50">Reservaciones</div>
-<!--                         <button *ngIf="userLogged?.role === 'app_admin'" (click)="showAddModal = !showAddModal" class="float-right btn-add-room text-white -mt-10 mr-3 bg-indigo-500 px-7 py-1.5">Añadir</button> -->
-                      </div>
+                    </div>
                 </div>
             </div>
         </a>
@@ -128,16 +200,18 @@
 
             <div class="flex items-center text-white justify-between px-6 py-3 bg-gray-900">
               
-              <h1 class="mr-1.5 text-sm font-normal">{{ reservation.pricePerHour }}Q x hora <ion-icon name="time" class="text-white text-base -mb-1"></ion-icon></h1>
+              <h1 class="-ml-1 text-sm font-normal">{{ reservation.pricePerHour }}Q x Hora</h1>
               
+              <button (click)="showServicesModal = true; setServicesData( reservation )" class="text-sm font-normal transform duration-200 hover:scale-105 bg-gray-100 text-gray-800 px-4 py-1 rounded-full">Servicios</button>
+
               <h1 *ngIf="reservation.reservation.cancelled" class="text-sm text-red-500 animate__animated animate__fadeInUp">Cancelada</h1>
-              <h1 *ngIf="!reservation.reservation.cancelled" class="text-sm text-green-500 animate__animated animate__fadeInDown">Disponible</h1>
+              <h1 *ngIf="!reservation.reservation.cancelled" class="text-sm text-green-500 animate__animated animate__fadeInDown">Reservada</h1>
 
             </div>
 
-            <div class="px-6 py-4">
+            <div class="px-6 py-4 relative">
                 <h1 class="text-base font-semibold text-gray-800">{{ reservation.hotel }}</h1>
-                <p class="py-1 reservation-desc text-gray-700 dark:text-gray-400">El código de la habitación reservada es {{ reservation.room }}</p>
+                <p class="py-1 reservation-desc text-gray-700 dark:text-gray-400">El código de la habitación reservada es {{ reservation.room }}.</p>
                 
                 <div class="flex items-center mt-1 text-gray-700 dark:text-gray-200">
                     <ion-icon name="arrow-forward-outline"></ion-icon>
