@@ -13,7 +13,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./reservations-page.component.css']
 })
 export class ReservationsPageComponent implements OnInit {
-  showContent: number = 0;
   reservations: any = [];
   showConfirmDeleteModal = false;
   deleteData: any = {};
@@ -42,7 +41,6 @@ export class ReservationsPageComponent implements OnInit {
     
 
     setTimeout(() => {
-      this.showContent = 1;
       this.spinnerService.hide( 'reservationSpinner' )
     }, 1000);
   }

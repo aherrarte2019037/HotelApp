@@ -421,3 +421,17 @@ button:disabled:hover {
 .btn-dropdow-menu {
   @apply text-gray-700 flex justify-between w-full px-4 py-2 text-sm leading-5 text-left cursor-pointer transition duration-200 hover:bg-blue-400 hover:text-white;
 }
+
+.btn-events {
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.entrance-dropdown {
+  @apply transition transform duration-150 ease-out scale-100 opacity-100;
+}
+
+.exit-dropdown {
+  @apply transform transition duration-150 ease-in scale-95 opacity-0;
+}

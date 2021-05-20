@@ -1,4 +1,4 @@
-<ng-container [style.opacity]="showContent">
+<ng-container>
 
   <div class="modal">
     <label class="modal-label hidden"></label>
@@ -296,6 +296,22 @@
               <span class="font-medium text-lg text-gray-800 title-font leading-none">{{ hotel.stars }}</span>
             </div>
             <div class="flex-grow pl-6">
+
+            <button (click)="showEventDropdown = !showEventDropdown" class="absolute right-0 mr-10 z-10 block p-2 bg-gray-300 rounded-md transform hover:scale-110 duration-200">
+                <img src="../../../assets/images/confetti.svg" class="w-5 h-5">
+            </button>
+
+            <div [ngClass]="{'entrance-dropdown': showEventDropdown, 'exit-dropdown': !showEventDropdown }" class="absolute transform right-0 z-20 mt-10 mr-10 overflow-hidden bg-white rounded-md shadow-lg w-80">
+                <div class="py-0">
+                    <a *ngFor="let service of hotel.services.slice(0, 3)" class="flex cursor-pointer items-center px-4 py-3 -mx-2 transition-colors duration-200 transform border-b hover:bg-gray-100 dark:hover:bg-gray-700 dark:border-gray-700">
+                        <p class="mx-2 text-sm text-gray-600 dark:text-white">
+                            <span class="font-bold">Sara Salah</span> replied on the <span class="font-bold text-blue-500" href="#">Upload Image</span> artical . 2m
+                        </p>
+                    </a>
+                </div>
+                <a class="block py-2 cursor-pointer font-medium text-center tracking-wider text-sm text-gray-50 bg-gray-800">Ver Todos</a>
+            </div>
+
               <h2 class="tracking-widest title-country title-font font-medium text-indigo-500 mb-1">{{ hotel.country | titlecase}}, {{ hotel.city | titlecase }}</h2>
               <h1 class="title-font text-xl font-medium text-gray-900 mb-3">{{ hotel.name | titlecase }}</h1>
               <p class="leading-relaxed mb-5">{{ hotel.description }}</p>
@@ -318,6 +334,7 @@
                   </div>
                 </button>
               </a>
+
             </div>
           </div>
         </div>

@@ -19,7 +19,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RoomPageComponent implements OnInit {
   searchTerm: string;
-  showContent: number = 0;
   rooms: any[] = [];
   hotels: any = [];
   userLogged: User;
@@ -69,7 +68,6 @@ export class RoomPageComponent implements OnInit {
     this.hotelService.getAll().subscribe( data => this.hotels = data.map( h => { return {_id: h._id, name: h.name} } ) );
 
     setTimeout(() => {
-      this.showContent = 1;
       this.spinnerService.hide( 'roomSpinner' )
     }, 1000);
   

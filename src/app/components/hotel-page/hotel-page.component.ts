@@ -17,7 +17,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HotelPageComponent implements OnInit {
   searchTerm: string;
-  showContent: number = 0;
   hotels: Hotel[] = [];
   addHotelForm: FormGroup = this.buildAddHotelForm();
   addServiceForm: FormGroup = this.buildAddServiceForm();
@@ -33,6 +32,8 @@ export class HotelPageComponent implements OnInit {
   adminUnassigned: User;
   dropdownValue: string = '';
   userLogged: User;
+  showEventDropdown: boolean = false;
+  services: any = [];
 
   constructor(
     private hotelService: HotelService,
@@ -51,7 +52,6 @@ export class HotelPageComponent implements OnInit {
     this.hotelService.getAll().subscribe( data => this.hotels = data );
     
     setTimeout(() => {
-      this.showContent = 1;
       this.spinnerService.hide( 'hotelSpinner' );
     }, 700);
   }

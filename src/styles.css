@@ -6,6 +6,13 @@
     display: none;
 }
 
+.ngx-spinner-overlay {
+    left: 260px!important;
+    position: fixed!important;
+    height: 100%!important;
+    width: calc(100% - 260px)!important;
+}
+
 body {
     overflow: hidden;
     height: 100vh;
