@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnotifyPosition, SnotifyService } from 'ng-snotify';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -34,6 +34,8 @@ export class HotelPageComponent implements OnInit {
   userLogged: User;
   showEventDropdown: boolean = false;
   services: any = [];
+  jelloAnimationLike: boolean = false;
+  jelloAnimationDislike: boolean = false;
 
   constructor(
     private hotelService: HotelService,
@@ -63,10 +65,26 @@ export class HotelPageComponent implements OnInit {
   }
 
   addLike( id: string ) {
-    this.hotelService.addLike( id ).subscribe()
+    this.jelloAnimationLike = true;
+    this.hotelService.addLike( id ).subscribe();
+    setTimeout(() => {
+      this.jelloAnimationLike = false;
+    }, 500);
+  }
+
+  changeJelloAnimation( button: HTMLButtonElement ) {
+    button.classList.add('jello-horizontal');
+    
+    setTimeout(() => {
+      button.classList.remove('jello-horizontal');
+    }, 500);
   }
 
   addDislike( id: string ) {
+    this.jelloAnimationDislike = true;
+    setTimeout(() => {
+      this.jelloAnimationDislike = false;
+    }, 500);
     this.hotelService.addDislike( id ).subscribe()
   }
 

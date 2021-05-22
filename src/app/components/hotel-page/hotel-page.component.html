@@ -274,7 +274,7 @@
   </div>
   
   <section *ngIf="getHotelSearch()?.length > 0" class="text-gray-600 body-font mb-10">
-    <div class="container px-5 pb-16 pt-12 mx-auto">
+    <div class="container px-5 pb-24 pt-12 mx-auto">
       <div class="flex flex-wrap -mx-4 md:mx-10 sm:mx-0 -my-8 justify-center">
   
         <div class="card-container py-8 px-4 lg:w-2/4 xl:w-1/3 relative" *ngFor="let hotel of hotels; trackBy:trackByHotelId">
@@ -288,7 +288,7 @@
           </div>
   
           <span class="right-10 top-14 absolute font-medium inline-flex h-6 w-10 rounded-full bg-gray-700 opacity-75 score text-xs text-white">{{ 'a' | randomScore}}</span>
-          <div class="shadow-container flex items-start bg-gray-50 shadow-sm transition duration-500 ease-in-out hover:shadow-lg rounded-b-2xl py-6 pl-2 pr-8">
+          <div class="shadow-container flex items-start bg-gray-50 shadow-sm transition duration-500 ease-in-out hover:shadow-lg rounded-b-2xl pt-6 pb-6 pl-2 pr-8">
             <div class="w-9 pl-2 flex-shrink-0 flex flex-col text-center leading-none">
               <span class="text-gray-500 pb-2 mb-2 border-b border-gray-200">
                 <img width="23px" height="23px" *ngFor="let item of [].constructor(hotel.stars)" class="star-icon" src="https://img.icons8.com/material-rounded/24/feca57/star--v1.png"/>
@@ -297,26 +297,33 @@
             </div>
             <div class="flex-grow pl-6">
 
-            <button (click)="showEventDropdown = !showEventDropdown" class="absolute right-0 mr-10 z-10 block p-2 bg-gray-300 rounded-md transform hover:scale-110 duration-200">
-                <img src="../../../assets/images/confetti.svg" class="w-5 h-5">
+            <button (click)="showEventDropdown = !showEventDropdown" class="absolute right-0 mr-10 block p-2 bg-gray-300 rounded-md transform hover:scale-110 duration-200">
+              <span class="absolute inline-flex -top-0.5 -right-0.5 rounded-full h-2.5 w-2.5 bg-gray-500"></span>  
+              <img src="../../../assets/images/confetti.svg" class="w-5 h-5">
             </button>
 
-            <div [ngClass]="{'entrance-dropdown': showEventDropdown, 'exit-dropdown': !showEventDropdown }" class="absolute transform right-0 z-20 mt-10 mr-10 overflow-hidden bg-white rounded-md shadow-lg w-80">
-                <div class="py-0">
-                    <a *ngFor="let service of hotel.services.slice(0, 3)" class="flex cursor-pointer items-center px-4 py-3 -mx-2 transition-colors duration-200 transform border-b hover:bg-gray-100 dark:hover:bg-gray-700 dark:border-gray-700">
-                        <p class="mx-2 text-sm text-gray-600 dark:text-white">
-                            <span class="font-bold">Sara Salah</span> replied on the <span class="font-bold text-blue-500" href="#">Upload Image</span> artical . 2m
+            <div [ngClass]="{'entrance-dropdown': showEventDropdown, 'exit-dropdown': !showEventDropdown }" class="absolute transform right-0 z-20 mt-10 mr-10 overflow-hidden bg-white rounded-md shadow-2xl w-80">
+                <div *ngFor="let event of hotel.events.slice(0, 3)" class="py-0 pt-0.5 hover:bg-gray-100">
+                    <a class="flex cursor-pointer items-center px-4 pt-3 -mx-2 transition-colors duration-200 transform">
+                        <p class="mx-2 text-sm text-gray-600">
+                            <span class="font-bold mr-1 text-gray-600">{{ event.name }}</span>
+                            <span>{{ event.description }}</span>
                         </p>
                     </a>
+                    <div class="flex justify-around border-b pb-2 pt-2">
+                      <span class="text-xs font-medium text-gray-500"><ion-icon name="alarm" class="text-base -mb-1"></ion-icon> {{ event.start| date:'short' }}</span>
+                      <span class="text-xs font-medium text-gray-500"><ion-icon name="alarm" class="text-base -mb-1"></ion-icon> {{ event.end| date:'short' }}</span>
+                    </div>
+
                 </div>
-                <a class="block py-2 cursor-pointer font-medium text-center tracking-wider text-sm text-gray-50 bg-gray-800">Ver Todos</a>
+                <a class="block py-1.5 cursor-pointer font-medium text-center tracking-wider text-sm text-gray-50 bg-gray-800">Ver Todos</a>
             </div>
 
               <h2 class="tracking-widest title-country title-font font-medium text-indigo-500 mb-1">{{ hotel.country | titlecase}}, {{ hotel.city | titlecase }}</h2>
               <h1 class="title-font text-xl font-medium text-gray-900 mb-3">{{ hotel.name | titlecase }}</h1>
               <p class="leading-relaxed mb-5">{{ hotel.description }}</p>
               <a class="inline-flex items-center">
-                <button (click)="addLike( hotel._id ); hotel.likes = hotel.likes + 1" class="btn-social flex wobble bg-blue-500 text-white">
+                <button (click)="addLike( hotel._id ); hotel.likes = hotel.likes + 1; changeJelloAnimation(btnLike)" #btnLike  class="btn-social flex wobble bg-blue-500 text-white">
                   <div class="social-container">
                     {{ hotel.likes }}
                   </div>
@@ -325,7 +332,7 @@
                   </div>
                 </button>
   
-                <button (click)="addDislike( hotel._id ); hotel.dislikes = hotel.dislikes + 1" class="ml-2.5 btn-social wobble btn-dislike flex bg-blue-500 text-white">
+                <button (click)="addDislike( hotel._id ); hotel.dislikes = hotel.dislikes + 1; changeJelloAnimation(btnDislike)" #btnDislike class="ml-2.5 btn-social wobble btn-dislike flex bg-blue-500 text-white">
                   <div class="social-container">
                     {{ hotel.dislikes }}
                   </div>
