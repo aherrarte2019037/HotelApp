@@ -139,6 +139,10 @@
   border-radius: 10px;
 }
 
+.modal-price .modal-content {
+  width: 300px;
+}
+
 .modal-content-2 {
   @apply shadow-2xl;
   width: 480px;
@@ -220,6 +224,11 @@
   @apply w-20 py-2 mx-1 font-semibold rounded-lg -mt-2 tracking-wide;
 }
 
+.btn-overlay-price {
+  transition: box-shadow 0.4s ease;
+  @apply w-20 py-1.5 mx-1 font-semibold rounded-lg -mt-2 tracking-wide;
+}
+
 .btn-hover:hover {
   @apply ring ring-blue-200;
 }
@@ -261,6 +270,12 @@ input:focus {
   font-size: 11px;
 }
 
-.span-add {
-  
+.services-container i {
+  margin-top: -1px;
+  padding-left: 3px;
+}
+
+.services-container ion-icon {
+  right: 28px;
+  margin-top: 3px;
 }

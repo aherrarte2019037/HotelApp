@@ -42,4 +42,10 @@ export class ReservationService {
     return this.http.get( `${this.apiUrl}/user/room/${room}/service/reservation/${reservation}`, { headers } )
   }
 
+  getTotalPrice( reservation: string ) {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+
+    return this.http.get( `${this.apiUrl}/user/reservation/${reservation}`, { headers } );
+  }
+
 }

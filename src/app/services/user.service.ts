@@ -34,4 +34,10 @@ export class UserService {
     return this.http.get<User[]>( `${this.apiUrl}/user/admin/unassigned`, { headers } );
   }
 
+  deleteAccount() {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+
+    return this.http.delete( `${this.apiUrl}/user`, { headers } );
+  }
+
 }

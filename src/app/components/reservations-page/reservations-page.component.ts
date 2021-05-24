@@ -18,10 +18,12 @@ export class ReservationsPageComponent implements OnInit {
   deleteData: any = {};
   userLogged: User;
   showServicesModal: boolean = false;
+  showTotalPrice: boolean = true;
   servicesData: any = [];
   reservationSelected: any;
   showIcon: boolean = false;
   servicesByReservation = new BehaviorSubject<any>([]);
+  totalPriceData: any;
 
   constructor(
     private spinnerService: NgxSpinnerService,
@@ -91,6 +93,11 @@ export class ReservationsPageComponent implements OnInit {
       this.snotifyService.success('Datos guardados', { showProgressBar: false, icon: '../../../assets/images/checkCircle.svg', iconClass: 'snotifyIcon', timeout: 2000, position: SnotifyPosition.rightTop })
       this.showIcon = false
     }, 500);
+  }
+
+  setTotalPrice( reservation: any ) {
+    console.log(this.totalPriceData)
+    this.reservationService.getTotalPrice( reservation.reservation._id ).subscribe( data => this.totalPriceData = data );
   }
 
 }

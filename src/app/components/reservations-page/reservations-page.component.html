@@ -18,7 +18,7 @@
         <div class="middle-modal px-7 pt-6">
 
           <div >
-            <p [style.visibility]="servicesData.length === 0? 'hidden':'visible'" class="text-center -mt-16 text-gray-600 font-bold text-2xl tracking-wide mb-3">Servicios</p>
+            <p *ngIf="servicesData.length > 0" class="text-center -mt-16 text-gray-600 font-bold text-2xl tracking-wide mb-3">Servicios</p>
             
             <div *ngFor="let service of servicesData; let last = last" [style.marginBottom.px]=" last? 30:-8" class="relative bg-gray-200 px-6 mt-5 py-2 rounded-lg flex justify-between items-center">
               <div class="flex">
@@ -63,6 +63,88 @@
               <span [class.invisible]="showIcon" class="tracking-wide">Guardar</span>
               </button>
 
+            </div>
+
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <div class="modal">
+    <label class="modal-label hidden"></label>
+    <input [checked]="showTotalPrice" class="modal-cbox hidden" type="checkbox">
+
+    <div class="modal-div">
+      <div class="modal-content pb-6">
+  
+        <div class="top top-modal-3">            
+        </div>
+  
+        <label (click)="showTotalPrice = !showTotalPrice" class="modal-close modal-close-fix">
+          <ion-icon name="close"></ion-icon>
+        </label>
+        <input class="modal-cbox " type="checkbox">
+  
+        <div class="middle-modal px-7 pt-6">
+
+          <div class="services-container">
+            <p *ngIf="totalPriceData" class="text-center -mt-16 text-gray-600 font-bold text-2xl tracking-wide">Precio Total</p>
+            
+            <div class="relative bg-gray-200 px-6 mt-5 mb-4 py-2 rounded-lg flex justify-between items-center">
+              <div class="flex">
+                <h1 class="text-sm font-medium text-gray-500 mt-0.5">Total</h1>
+                <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ totalPriceData?.total }} Q</h1>
+
+                <i class="material-icons bg-gray-700 text-white rounded-full w-6 h-6 leading-6 text-lg absolute right-6">
+                  done
+                </i>
+              </div>
+            </div>
+
+            <div class="relative bg-gray-200 px-6 mb-4 py-2 rounded-lg flex justify-between items-center">
+              <div class="flex">
+                <h1 class="text-sm font-medium text-gray-500 mt-0.5">Precio De Habitación</h1>
+                <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ totalPriceData?.roomPrice }} Q</h1>
+
+                <i class="material-icons bg-green-700 opacity-90 text-white rounded-full w-6 h-6 leading-6 text-lg absolute right-6">
+                  king_bed
+                </i>
+              </div>
+            </div>
+
+            <div class="relative bg-gray-200 px-6 mb-4 py-2 rounded-lg flex justify-between items-center">
+              <div class="flex">
+                <h1 class="text-sm font-medium text-gray-500 mt-0.5">Horas De Estadía</h1>
+                <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ totalPriceData?.hoursStay | number:'1.0-0' }}</h1>
+
+                <i class="material-icons bg-indigo-800 opacity-90 text-indigo-800 rounded-full w-6 h-6 leading-6 text-lg absolute right-6">
+                  event
+                </i>
+                <ion-icon name="time" class="bg-indigo-800 opacity-90 text-white rounded-full w-4 h-4 leading-6 text-xs absolute"></ion-icon>
+              </div>
+            </div>
+
+            <div class="relative bg-gray-200 px-6 mb-7 py-2 rounded-lg flex justify-between items-center">
+              <div class="flex">
+                <h1 class="text-sm font-medium text-gray-500 mt-0.5">Precio De Servicios</h1>
+                <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ totalPriceData?.servicesPrice | number:'1.2-2' }} Q</h1>
+
+                <i class="material-icons bg-yellow-700 opacity-80 text-white rounded-full w-6 h-6 leading-6 text-lg  absolute right-6">
+                  restaurant_menu
+                </i>
+              </div>
+            </div>
+            
+            <div class="-mt-20 mb-10" *ngIf="!totalPriceData">
+              <img class="mx-auto mt-16 pt-1.5 mb-2" src="../../../assets/images/search.svg" width="80px">
+              <h1 class="mb-7 title-no-service font-medium text-center mx-auto tracking-wide text-gray-500">No se encontraron servicios</h1>
+            </div>
+            
+            <div class="flex justify-end">
+              <button (click)="showTotalPrice = !showTotalPrice" class="bg-red-300 text-sm hover:text-red-600 hover:bg-red-400 text-red-500 btn-overlay-price">Cerrar</button>
             </div>
 
           </div>
@@ -200,12 +282,13 @@
 
             <div class="flex items-center text-white justify-between px-6 py-3 bg-gray-900">
               
-              <h1 class="-ml-1 text-sm font-normal">{{ reservation.pricePerHour }}Q x Hora</h1>
+              <button type="button" (click)="setTotalPrice( reservation ); showTotalPrice = true" class="text-sm font-medium transform duration-200 hover:scale-105 bg-gray-100 text-gray-800 w-24 py-1 rounded-full">Total</button>
               
-              <button (click)="showServicesModal = true; setServicesData( reservation )" class="text-sm font-normal transform duration-200 hover:scale-105 bg-gray-100 text-gray-800 px-4 py-1 rounded-full">Servicios</button>
-
               <h1 *ngIf="reservation.reservation.cancelled" class="text-sm text-red-500 animate__animated animate__fadeInUp">Cancelada</h1>
               <h1 *ngIf="!reservation.reservation.cancelled" class="text-sm text-green-500 animate__animated animate__fadeInDown">Reservada</h1>
+
+              <button (click)="showServicesModal = true; setServicesData( reservation )" class="text-sm font-medium transform duration-200 hover:scale-105 bg-gray-100 text-gray-800 w-24 py-1 rounded-full">Servicios</button>
+
 
             </div>
 

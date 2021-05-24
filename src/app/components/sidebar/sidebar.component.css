@@ -179,6 +179,10 @@ ion-icon {
   border-radius: 10px;
 }
 
+.modal-2 .modal-close {
+  @apply text-white hover:text-gray-700;
+}
+
 .modal-close {
   font-size: 19px;
   cursor: pointer;
@@ -201,6 +205,13 @@ ion-icon {
   width: 100%;
   height: 80px;
   @apply p-5 -mt-0.5;
+}
+
+.modal-2 .top {
+  background-image: none;
+}
+
+.modal-2 .middle {
 }
 
 .top h1 {
@@ -297,4 +308,12 @@ button:disabled {
 
 button:disabled:hover {
   @apply bg-blue-500;
+}
+
+.blue-container {
+  height: 212px;
+}
+
+.modal-container {
+  margin-top: -102px;
 }

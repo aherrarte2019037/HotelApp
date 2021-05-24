@@ -20,9 +20,11 @@ export class SidebarComponent implements OnInit {
   activateEdit: boolean = false;
   formChanges: any = {};
   user: User;
+  confirmDelete: boolean = false;
   user$ = new BehaviorSubject({});
 
   constructor(
+    private authService: AuthService,
     private auth: AuthService,
     private router: Router,
     private userService: UserService,
@@ -122,6 +124,14 @@ export class SidebarComponent implements OnInit {
       this.editForm.get('email').setValue(this.user.email);
       this.editForm.get('username').setValue(this.user.username);
     }, 200);
+  }
+
+  deleteAccount() {
+    this.userService.deleteAccount().subscribe( data => {
+      this.snotifyService.success('Cuenta eliminada', { showProgressBar: false, icon: '../../../assets/images/checkCircle.svg', iconClass: 'snotifyIcon', timeout: 1500, position: SnotifyPosition.rightTop })
+      this.authService.logOut();
+      this.router.navigateByUrl('/login')
+    });
   }
 
 }
