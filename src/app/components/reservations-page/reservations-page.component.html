@@ -117,6 +117,17 @@
 
             <div class="relative bg-gray-200 px-6 mb-4 py-2 rounded-lg flex justify-between items-center">
               <div class="flex">
+                <h1 class="text-sm font-medium text-gray-500 mt-0.5">Precio De Servicios</h1>
+                <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ totalPriceData?.servicesPrice | number:'1.2-2' }} Q</h1>
+
+                <i class="material-icons bg-yellow-700 opacity-80 text-white rounded-full w-6 h-6 leading-6 text-lg  absolute right-6">
+                  restaurant_menu
+                </i>
+              </div>
+            </div>
+
+            <div class="relative bg-gray-200 px-6 mb-7 py-2 rounded-lg flex justify-between items-center">
+              <div class="flex">
                 <h1 class="text-sm font-medium text-gray-500 mt-0.5">Horas De Estadía</h1>
                 <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ totalPriceData?.hoursStay | number:'1.0-0' }}</h1>
 
@@ -124,17 +135,6 @@
                   event
                 </i>
                 <ion-icon name="time" class="bg-indigo-800 opacity-90 text-white rounded-full w-4 h-4 leading-6 text-xs absolute"></ion-icon>
-              </div>
-            </div>
-
-            <div class="relative bg-gray-200 px-6 mb-7 py-2 rounded-lg flex justify-between items-center">
-              <div class="flex">
-                <h1 class="text-sm font-medium text-gray-500 mt-0.5">Precio De Servicios</h1>
-                <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ totalPriceData?.servicesPrice | number:'1.2-2' }} Q</h1>
-
-                <i class="material-icons bg-yellow-700 opacity-80 text-white rounded-full w-6 h-6 leading-6 text-lg  absolute right-6">
-                  restaurant_menu
-                </i>
               </div>
             </div>
             

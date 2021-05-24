@@ -18,7 +18,7 @@ export class ReservationsPageComponent implements OnInit {
   deleteData: any = {};
   userLogged: User;
   showServicesModal: boolean = false;
-  showTotalPrice: boolean = true;
+  showTotalPrice: boolean = false;
   servicesData: any = [];
   reservationSelected: any;
   showIcon: boolean = false;
@@ -96,7 +96,6 @@ export class ReservationsPageComponent implements OnInit {
   }
 
   setTotalPrice( reservation: any ) {
-    console.log(this.totalPriceData)
     this.reservationService.getTotalPrice( reservation.reservation._id ).subscribe( data => this.totalPriceData = data );
   }
 
