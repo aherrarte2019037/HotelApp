@@ -1,10 +1,7 @@
-import { DecimalPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SnotifyPosition, SnotifyService } from 'ng-snotify';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { map } from 'rxjs/operators';
-import { Hotel } from 'src/app/models/hotel.model';
 import { Room } from 'src/app/models/room.model';
 import { User } from 'src/app/models/user.model';
 import { SearchFilterPipe } from 'src/app/pipes/search-filter.pipe';
@@ -39,6 +36,7 @@ export class RoomPageComponent implements OnInit {
   minDate: Date = new Date();
   exitMinDate: Date = new Date();
   servicesData: any = [];
+  disablePointer: boolean = true;
 
   constructor(
     private spinnerService: NgxSpinnerService,
@@ -81,6 +79,7 @@ export class RoomPageComponent implements OnInit {
   resetAddRoomForm() {
     this.addRoomForm.reset();
     this.dropdownValue = '';
+    this.showDropdownError = false;
   }
 
   buildAddRoomForm() {
@@ -127,6 +126,7 @@ export class RoomPageComponent implements OnInit {
   }
 
   setDropdownValue( hotel: any ) {
+    this.disablePointer = !this.disablePointer;
     this.hotelSelected = hotel._id;
     this.dropdownValue = hotel.name;
     this.addRoomForm.get('hotel').setValue(hotel._id);
@@ -231,9 +231,10 @@ export class RoomPageComponent implements OnInit {
     this.hotelService.getOne( hotel ).subscribe( (data:any) => this.servicesData = data.services );
   }
 
-  dateFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    return day !== 0 && day !== 6;
+  changePointerEvent() {
+    setTimeout(() => {
+      this.disablePointer = false
+    }, 200);
   }
 
 }

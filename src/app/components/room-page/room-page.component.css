@@ -98,7 +98,7 @@
     width: 480px;
     background: white;
     position: absolute;
-    top: 39%;
+    top: 37%;
     left: calc(50% - 110px);
     border-radius: 10px;
 }
@@ -119,6 +119,17 @@
     right: 7px;
     top: 2px;
     @apply text-white hover:text-gray-600;
+}
+
+.modal-3 .modal-content {
+    height: fit-content;
+    top: 40px;
+    bottom: 0;
+    margin: auto;
+}
+
+.modal-content-1 {
+    top: 34%;
 }
 
 .modal-close-fix {
@@ -344,4 +355,8 @@ li>ul                 { transform: translatex(100%) scale(0) }
 .title-no-service {
     font-size: 14px;
     font-family: 'Poppins', sans-serif; 
+}
+
+.disable-pointer {
+    pointer-events: none;
 }
