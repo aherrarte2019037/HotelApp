@@ -122,7 +122,9 @@ export class RoomPageComponent implements OnInit {
   }
 
   setDropdownError() {
-    if( !this.dropdownValue ) return this.showDropdownError = true;
+    setTimeout(() => {
+      if( !this.dropdownValue ) return this.showDropdownError = true;
+    }, 90);
   }
 
   setDropdownValue( hotel: any ) {
@@ -234,7 +236,7 @@ export class RoomPageComponent implements OnInit {
   changePointerEvent() {
     setTimeout(() => {
       this.disablePointer = false
-    }, 200);
+    }, 140);
   }
 
 }
