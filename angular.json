@@ -30,7 +30,9 @@
               "node_modules/animate.css/animate.min.css",
               "src/assets/fontello/css/fontello.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/apexcharts/dist/apexcharts.min.js"
+            ]
           },
           "configurations": {
             "production": {

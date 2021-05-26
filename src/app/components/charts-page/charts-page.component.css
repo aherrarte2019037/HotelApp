@@ -1,0 +1,40 @@
+.main-container {
+    background-image: url('../../../assets/images/chartBg.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.rooms-container {
+  font-family: 'Poppins', sans-serif;
+}
+
+@media only screen and (min-width: 1500px) {
+    .opacity-container {
+      width: 1000px;
+    }
+}
+
+.dashboard-card {
+  background: linear-gradient(to right, #fc5c7d, #6a82fb);
+}
+
+.dashboard-card-2 {
+  background: linear-gradient(to right, #fc4a1a, #f7b733);
+}
+
+.chart-icon {
+  color: #fca23b;
+}
+
+.chart-icon-2 {
+  @apply text-yellow-900;
+}
+
+.reservation-desc {
+  font-size: 15px;
+}
+
+.title {
+  font-family: 'Poppins', sans-serif;
+}

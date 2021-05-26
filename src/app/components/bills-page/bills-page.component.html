@@ -1,0 +1,245 @@
+<div class="modal">
+  <label class="modal-label hidden"></label>
+  <input [checked]="showBillModal" class="modal-cbox hidden" type="checkbox">
+
+  <div class="modal-div">
+    <div class="modal-content pb-6">
+
+      <div class="top top-modal-3">            
+      </div>
+
+      <label (click)="showBillModal = !showBillModal" class="modal-close modal-close-fix">
+        <ion-icon name="close"></ion-icon>
+      </label>
+      <input class="modal-cbox " type="checkbox">
+
+      <div class="middle-modal px-7 pt-6">
+
+        <div class="services-container">
+          <p *ngIf="billData" class="text-center -mt-16 text-gray-600 font-bold text-2xl tracking-wide">Detalle De Factura</p>
+          
+          <div class="relative bg-gray-200 px-6 mt-5 mb-4 py-2 rounded-lg flex justify-between items-center">
+            <div class="flex">
+              <h1 class="text-sm font-medium text-gray-500 mt-0.5">Total</h1>
+              <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ billData?.total }} Q</h1>
+
+              <i class="material-icons bg-gray-700 text-white rounded-full w-6 h-6 leading-6 text-lg absolute right-6">
+                done
+              </i>
+            </div>
+          </div>
+
+          <div class="relative bg-gray-200 px-6 mb-4 py-2 rounded-lg flex justify-between items-center">
+            <div class="flex">
+              <h1 class="text-sm font-medium text-gray-500 mt-0.5">Precio De Habitación</h1>
+              <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ billData?.roomPrice }} Q</h1>
+
+              <i class="material-icons bg-green-700 opacity-90 text-white rounded-full w-6 h-6 leading-6 text-lg absolute right-6">
+                king_bed
+              </i>
+            </div>
+          </div>
+
+          <div class="relative bg-gray-200 px-6 mb-4 py-2 rounded-lg flex justify-between items-center">
+            <div class="flex">
+              <h1 class="text-sm font-medium text-gray-500 mt-0.5">Precio De Servicios</h1>
+              <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ billData?.servicesPrice | number:'1.2-2' }} Q</h1>
+
+              <i class="material-icons bg-yellow-700 opacity-80 text-white rounded-full w-6 h-6 leading-6 text-lg  absolute right-6">
+                restaurant_menu
+              </i>
+            </div>
+          </div>
+
+          <div class="relative bg-gray-200 px-6 mb-7 py-2 rounded-lg flex justify-between items-center">
+            <div class="flex">
+              <h1 class="text-sm font-medium text-gray-500 mt-0.5">Horas De Estadía</h1>
+              <h1 class="text-gray-700 font-medium text-sm ml-2 mt-0.5">{{ billData?.hoursStay | number:'1.0-0' }}</h1>
+
+              <i class="material-icons bg-indigo-800 opacity-90 text-indigo-800 rounded-full w-6 h-6 leading-6 text-lg absolute right-6">
+                event
+              </i>
+              <ion-icon name="time" class="bg-indigo-800 opacity-90 text-white rounded-full w-4 h-4 leading-6 text-xs absolute"></ion-icon>
+            </div>
+          </div>
+          
+          <div class="-mt-20 mb-10" *ngIf="!billData">
+            <img class="mx-auto mt-16 pt-1.5 mb-2" src="../../../assets/images/search.svg" width="80px">
+            <h1 class="mb-7 title-no-service font-medium text-center mx-auto tracking-wide text-gray-500">Información no disponible</h1>
+          </div>
+          
+          <div class="flex justify-end">
+            <button (click)="showBillModal = !showBillModal" class="bg-red-300 text-sm hover:text-red-600 hover:bg-red-400 text-red-500 btn-overlay-price">Cerrar</button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<section class="text-gray-600 body-font main-container">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-wrap -m-4 justify-center">
+
+        <div class="py-4">
+          <div class="opacity-container mx-5 xl:h-full h-56 pt-9 pb-24 bg-gray-100 bg-opacity-80 lg:h-56 lg:pt-9 px-8 xl:pt-16 xl:pb-24 rounded-xl overflow-hidden text-center relative">
+            <h2 class="tracking-widest text-xs title-font font-medium text-gray-500 mb-1">HOTEL CONTROL</h2>
+            <h1 class="title-font text-2xl font-medium text-gray-900 mb-3">Facturas</h1>
+            <p class="leading-relaxed text-sm mb-3 text-gray-600">Colección de facturas realizadas por el administrador del hotel para gestionarlas.</p>
+            <a class="text-indigo-500 hover:text-indigo-600 px-5 bg-transparent text-sm inline-flex items-center cursor-pointer">Leer Más
+              <svg class="w-4 h-4 ml-0.5 cursor-pointer" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
+            </a>
+            <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4">
+              <span class="text-gray-700 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200">
+                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>1.2K
+              </span>
+              <span class="text-gray-700 inline-flex items-center leading-none text-sm">
+                <svg class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                  <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+                </svg>266
+              </span>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>
+</section>
+
+<div class="flex md:gap-6 gap-3 mt-10 px-10 justify-center">
+    <a class="dashboard-card transform w-full lg:w-2/3 hover:scale-105 transition duration-300 shadow-xl rounded-xl">
+        <div class="p-5">
+            <div class="flex justify-between">
+                <svg class="h-7 w-7 chart-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"></path>
+                </svg>
+                <div class="bg-yellow-500 rounded-full mr-2 mt-1 h-6 pr-2.5 pl-3 flex justify-items-center text-white font-medium text-sm">
+                    <span class="flex items-center">91%</span>
+                </div>
+            </div>
+                
+            <div class="ml-2 w-full flex-1">
+                <div>
+                    <div *ngIf="reservations as reservationsLength" class="mt-3 text-3xl text-white font-bold leading-8">{{ reservationsLength.length? reservationsLength.length: 0 }}</div>
+      
+                    <div *ngIf="reservations.length !== 1" class="mt-1 text-base font-medium text-gray-50">Reservaciones</div>
+                    <div *ngIf="reservations.length === 1" class="mt-1 text-base font-medium text-gray-50">Reservación</div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+
+<div class="flex justify-center md:mx-12">
+    <div class="relative w-full max-w-3xl px-5 py-4 mt-10 rounded-xl">
+      <span class="absolute inset-y-0 left-5 flex items-center pl-3">
+          <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+      </span>
+      
+        <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white rounded-xl border border-gray-300 focus:border-transparent ring-indigo-400 ring-opacity-60 focus:outline-none focus:ring" placeholder="Buscar facturas">
+    </div>
+</div>
+
+<div *ngIf="reservations?.length > 0" class="flex flex-col md:mx-5 mx-2 lg:mx-20 mt-5 2xl:mx-36 mb-28">
+    <div class="-my-2 overflow-x-auto">
+      <div class="py-2 align-middle inline-block min-w-full">
+        <div class="shadow-md overflow-hidden border-b border-gray-200 rounded-lg">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="pl-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Habitación
+                </th>
+                <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Cliente
+                </th>
+                <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Estado
+                </th>
+                <th scope="col" class="py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Fechas
+                </th>
+                <th scope="col" class="pr-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Acciones
+                </th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200 border border-gray-300">
+
+              <tr class="h-24" *ngFor="let reservation of reservations; trackBy:trackByIndex">
+                <td class="py-4 whitespace-nowrap pl-6">
+                  <ng-container *ngIf="userLogged?.role === 'client'">
+                    <div class="text-sm text-gray-900">{{ reservation.room }}</div>
+                    <div class="text-sm text-gray-500">{{ reservation.hotel }}</div>
+                  </ng-container>
+
+                  <ng-container *ngIf="userLogged?.role === 'hotel_admin'">
+                    <div class="text-sm text-gray-900">{{ reservation.room.name }}</div>
+                    <div class="text-sm text-gray-500">{{ reservation.hotel.name }}</div>
+                  </ng-container>
+                </td>
+
+                <td class="py-4 whitespace-nowrap">
+                <div class="text-sm text-gray-900">{{ reservation.reservation.user?.username || 'No Disponible' }}</div>
+                  <div class="text-sm text-gray-500">{{ reservation.reservation.user?.firstname || 'No Disponible' }} {{ reservation.reservation.user?.lastname }}</div>
+                </td>
+
+                <td class="states-col py-4 pr-3 whitespace-nowrap flex xl:flex-row gap-x-4 gap-y-2 flex-col items-center content-center h-28 justify-center">
+                <span class="text-xs w-20 mx-auto text-center xl:mx-0 xl:w-24 font-semibold h-6 rounded-full bg-gray-300 text-gray-700">
+                    {{ reservation.reservation.invoiced? 'Facturada':'Pendiente' }}
+                </span> 
+
+                <span *ngIf="!reservation.reservation.cancelled" class="text-xs xl:mx-0 h-6 w-20 xl:w-24 mx-auto font-semibold text-center rounded-full bg-green-100 text-green-800">
+                    Activa
+                </span> 
+                  
+                <span *ngIf="reservation.reservation.cancelled" class="text-xs xl:mx-0 xl:w-24 h-6 w-20 mx-auto font-semibold rounded-full text-center bg-red-100 text-red-800">
+                    Cancelada
+                </span>  
+                </td>
+
+                <td class="py-4 whitespace-nowrap text-sm text-gray-500">
+                    <div class="text-xs text-gray-800 font-medium">Entrada</div>
+                    <div class="text-sm text-gray-700">{{ reservation.reservation.entryDateTime | date:'short' }}</div>
+                    <div class="text-xs text-gray-800 font-medium">Salida</div>
+                    <div class="text-sm text-gray-600">{{ reservation.reservation.exitDateTime | date:'short' }}</div>
+                </td>
+
+                <td class="py-4 w-28 px-2 whitespace-nowrap text-sm text-gray-500">
+                    <div class="flex lg:flex-row justify-center gap-x-2 flex-col gap-y-2">
+                        <button (click)="getBill( reservation.reservation._id )" [disabled]="!reservation.reservation.invoiced" class="bg-purple-300 shadow-2xl transform duration-200 hover:scale-105 font-medium text-purple-500 text-sm px-5 h-9 rounded-lg w-24">Ver</button>
+                        <button *ngIf="userLogged.role === 'hotel_admin'" (click)="addBill( reservation.reservation, iconHtml, textButton )" [disabled]="reservation.reservation.cancelled || reservation.reservation.invoiced" class="bg-blue-300 shadow-2xl transform duration-200 h-9 btn-invoice hover:scale-105 font-medium text-sm rounded-lg w-24">
+                          <svg #iconHtml class="hidden animate-spin top-2 absolute left-9 h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          <span #textButton class="block">Facturar</span>
+                        </button>
+                    </div>
+                </td>
+              </tr>
+  
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div *ngIf="reservations?.length === 0 || !reservations" class="animate fadeIn mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
+  <img src="../../../assets/images/searchRoom.svg" alt="" class="searchRoom">
+  <h1 class="flex justify-center mt-6 text-xl text-gray-800">No se encontraron reservaciones</h1>
+</div>
+
+<ngx-spinner [name]="'billSpinner'" size="medium" type="ball-clip-rotate" [disableAnimation]="true" bdColor="rgba(255,255,255,1)" [fullScreen]="false" [color]="'#414040'"></ngx-spinner>

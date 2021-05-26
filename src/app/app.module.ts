@@ -26,6 +26,9 @@ import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerMod
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { ReservationsPageComponent } from './components/reservations-page/reservations-page.component';
 import { ServiceQuantityPipe } from './pipes/service-quantity.pipe';
+import { BillsPageComponent } from './components/bills-page/bills-page.component';
+import { ChartsPageComponent } from './components/charts-page/charts-page.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -42,6 +45,8 @@ import { ServiceQuantityPipe } from './pipes/service-quantity.pipe';
     TruncateTextPipe,
     ReservationsPageComponent,
     ServiceQuantityPipe,
+    BillsPageComponent,
+    ChartsPageComponent,
   ],
   imports: [
     NgxMatDatetimePickerModule,
@@ -59,7 +64,8 @@ import { ServiceQuantityPipe } from './pipes/service-quantity.pipe';
     MatInputModule,
     MatNativeDateModule,
     SidebarModule.forRoot(),
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    NgApexchartsModule,
   ],
   providers: [
     { provide: 'SnotifyToastConfig', useValue: ToastDefaults },

@@ -117,6 +117,19 @@ ion-icon {
   color: #ef5777;
 }
 
+.btn-graphic:hover ion-icon {
+  color: #1e90ff;
+}
+
+.btn-graphic-active {
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 4px 10px 2px #1f2335;
+}
+
+.btn-graphic-active ion-icon {
+  color: #1e90ff;
+}
+
 .right-icon {
   @apply -mb-0.5 float-right mt-2.5;
 }

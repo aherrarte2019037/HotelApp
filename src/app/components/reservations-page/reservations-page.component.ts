@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { SnotifyPosition, SnotifyService } from 'ng-snotify';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/models/user.model';
 import { HotelService } from 'src/app/services/hotel.service';
 import { ReservationService } from 'src/app/services/reservation.service';
 import { UserService } from 'src/app/services/user.service';
@@ -16,7 +15,6 @@ export class ReservationsPageComponent implements OnInit {
   reservations: any = [];
   showConfirmDeleteModal = false;
   deleteData: any = {};
-  userLogged: User;
   showServicesModal: boolean = false;
   showTotalPrice: boolean = false;
   servicesData: any = [];

@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Hotel } from '../models/hotel.model';
 import { Service } from '../models/service.mode';
-import { User } from '../models/user.model';
 import { AuthService } from './auth.service';
 import { GlobalService } from './global.service';
 

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User, UserRoles } from '../models/user.model';
 import { GlobalService } from './global.service';
 import { tap } from 'rxjs/operators'
+import decode from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,10 @@ export class AuthService {
 
   isAuthenticated() {
     return this.token? true : false;
+  }
+
+  getRoleAuthenticated(): UserRoles {
+    return decode( this.token )['role'];
   }
 
   logOut() {

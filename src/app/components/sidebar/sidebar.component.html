@@ -25,13 +25,18 @@
           name="chevron-forward-outline"></ion-icon>
       </a>
 
-      <a class="btn-reservation" [routerLink]="['reservations']" routerLinkActive="btn-reservation-active">
+      <a *ngIf="(user$ | async).role === 'client'" class="btn-reservation" [routerLink]="['reservations']" routerLinkActive="btn-reservation-active">
         <ion-icon class="bg-icon" name="calendar-number"></ion-icon>Reservaciones<ion-icon class="right-icon"
           name="chevron-forward-outline"></ion-icon>
       </a>
 
-      <a class="btn-bill" [routerLink]="['/bills']" routerLinkActive="btn-bill-active">
+      <a *ngIf="(user$ | async).role !== 'app_admin'" class="btn-bill" [routerLink]="['bills']" routerLinkActive="btn-bill-active">
         <ion-icon class="bg-icon" name="cash"></ion-icon>Facturas<ion-icon class="right-icon"
+          name="chevron-forward-outline"></ion-icon>
+      </a>
+
+      <a *ngIf="(user$ | async).role === 'app_admin'" class="btn-graphic" [routerLink]="['charts']" routerLinkActive="btn-graphic-active">
+        <ion-icon class="bg-icon" name="analytics"></ion-icon>Estadísticas<ion-icon class="right-icon"
           name="chevron-forward-outline"></ion-icon>
       </a>
     </div>
