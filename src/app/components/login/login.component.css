@@ -11,8 +11,9 @@ input {
 }
 
 .form-container {
+    max-height: 600px;
     height: fit-content;
-    @apply w-11/12 sm:w-2/3 md:w-2/4 lg:w-1/3 xl:w-3/12 2xl:w-3/12 p-10 text-center;
+    @apply w-11/12 sm:w-2/3 md:w-2/4 lg:w-1/3 2xl:w-3/12 p-10 text-center;
 }
 
 .form { 
