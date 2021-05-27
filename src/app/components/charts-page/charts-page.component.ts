@@ -7,7 +7,6 @@ import { UserService } from 'src/app/services/user.service';
 import {
   ApexAxisChartSeries,
   ApexChart,
-  ChartComponent,
   ApexDataLabels,
   ApexPlotOptions,
   ApexYAxis,
@@ -45,6 +44,8 @@ export class ChartsPageComponent implements OnInit {
   likesOptions: Partial<ChartOptions>;
   userOptions: Partial<ChartOptions>;
   showContent: boolean = false;
+  hotelsData: any = [];
+  likesData: any = [];
 
   constructor(
     private spinnerService: NgxSpinnerService,
@@ -73,12 +74,14 @@ export class ChartsPageComponent implements OnInit {
   }
 
   setBestSellersChart() {
-    const data: any = this.hotels.map( hotel => {
-      return { data: [hotel.reservations], name: hotel.name}
-    });
+    if( this.hotelsData.length > 0 ) {
+      this.hotelsData = this.hotels.map( hotel => {
+        return { data: [hotel.reservations], name: hotel.name}
+      });
+    }
 
     this.bestSellersOptions = {
-      series: data,
+      series: this.hotelsData,
       chart: {
         type: "bar",
         height: 350
@@ -122,12 +125,14 @@ export class ChartsPageComponent implements OnInit {
   }
 
   setLikesChart() {
-    const data: any = this.hotels.map( hotel => {
-      return { data: [hotel.likes, hotel.dislikes], name: hotel.name}
-    });
+    if( this.likesData.length > 0 ) {
+      this.likesData = this.hotels.map( hotel => {
+        return { data: [hotel.likes, hotel.dislikes], name: hotel.name}
+      });
+    }
 
     this.likesOptions = {
-      series: data,
+      series: this.likesData,
       chart: {
         type: "bar",
         height: 350

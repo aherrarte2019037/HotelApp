@@ -63,7 +63,9 @@ export class RoomPageComponent implements OnInit {
           this.activateAddReserve = true;
         } else { this.activateAddReserve = false }
     });
-    this.hotelService.getAll().subscribe( data => this.hotels = data.map( h => { return {_id: h._id, name: h.name} } ) );
+    this.hotelService.getAll().subscribe( data => {
+      if( !data['error'] || data.length > 0 ) this.hotels = data.map( h => { return {_id: h._id, name: h.name} } );
+    });
 
     setTimeout(() => {
       this.spinnerService.hide( 'roomSpinner' )

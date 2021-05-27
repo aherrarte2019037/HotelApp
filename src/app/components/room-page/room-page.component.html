@@ -319,10 +319,10 @@
       </div>
   </section>
 
-  <div *ngIf="getRoomsSearch()?.length === 0" class="animate fadeIn mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
+  <div *ngIf="getRoomsSearch()?.length === 0 || rooms['error']" class="animate fadeIn mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
       <img src="../../../assets/images/searchRoom.svg" alt="" class="searchRoom">
-      <h1 class="flex justify-center mt-6 text-xl text-gray-800">No se encontraron resultados</h1>
-  </div>
+      <h1 class="text-center text-2xl font-semibold mt-5 text-gray-800">No se encontraron habitaciones</h1>
+    </div>
 
 </ng-container>
 

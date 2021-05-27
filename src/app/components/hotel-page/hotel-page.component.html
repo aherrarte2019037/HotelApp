@@ -351,8 +351,9 @@
     </div>
   </section>
 
-  <div *ngIf="getHotelSearch()?.length === 0" class="mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
+  <div *ngIf="getHotelSearch()?.length === 0 || hotels['error']" class="mx-auto w-full px-6 md:px-20 2xl:w-1/2 lg:w-3/4 mt-20 mb-52">
     <img src="../../../assets/images/searchRoom.svg">
+    <h1 class="text-center text-2xl font-semibold mt-5 text-gray-800">No se encontraron hoteles</h1>
   </div>
 
 </ng-container>
