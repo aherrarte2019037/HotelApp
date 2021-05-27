@@ -288,6 +288,8 @@
           </div>
   
           <span class="right-10 top-14 absolute font-medium inline-flex h-6 w-10 rounded-full bg-gray-700 opacity-75 score text-xs text-white">{{ 'a' | randomScore}}</span>
+          <span (click)="deleteHotel(hotel)" *ngIf="userLogged.role === 'app_admin'" class="cursor-pointer left-9 top-14 absolute font-medium h-6 rounded-full bg-gray-700 opacity-75 score-2 text-xs text-white">Eliminar</span>
+
           <div class="shadow-container flex items-start bg-gray-50 shadow-sm transition duration-500 ease-in-out hover:shadow-lg rounded-b-2xl pt-6 pb-6 pl-2 pr-8">
             <div class="w-9 pl-2 flex-shrink-0 flex flex-col text-center leading-none">
               <span class="text-gray-500 pb-2 mb-2 border-b border-gray-200">

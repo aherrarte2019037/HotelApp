@@ -60,6 +60,12 @@ export class HotelPageComponent implements OnInit {
 
   //Hotel
 
+  deleteHotel( hotel: Hotel ) {
+    this.hotelService.deleteHotel( hotel._id ).subscribe( data => {
+      this.hotelService.getAll().subscribe( data => this.hotels = data );
+    });
+  }
+
   getHotelSearch() {
     return this.searchFilter.transform( this.hotels, this.searchTerm )
   }

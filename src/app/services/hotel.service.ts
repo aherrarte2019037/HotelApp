@@ -46,4 +46,10 @@ export class HotelService {
     return this.http.post<any>( `${this.apiUrl}/hotel/${adminHotel}/service`, { service }, { headers } );
   }
 
+  deleteHotel( hotel: string ) {
+    const headers = new HttpHeaders({ Authorization: `Bearer ${this.token}` });
+
+    return this.http.delete<any>( `${this.apiUrl}/hotel/${hotel}`, { headers } );
+  }
+
 }

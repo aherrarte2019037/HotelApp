@@ -70,6 +70,12 @@
   padding-left: 12px;
 }
 
+.score-2 {
+  padding-top: 3.4px;
+  padding-left: 12px;
+  width: 68px;
+}
+
 .overlay-container {
   position: relative;
   width: 100%;
